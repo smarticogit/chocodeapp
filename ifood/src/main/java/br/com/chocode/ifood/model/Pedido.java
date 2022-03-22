@@ -24,7 +24,6 @@ public class Pedido {
 	private String nomeRestaurante;
 
 	private String produto;
-
 	private String status;
 
 	@ManyToOne
@@ -56,9 +55,7 @@ public class Pedido {
 		this.status = pedido.getStatus();
 		this.nomeRestaurante = pedido.getNomeRestaurante();
 		this.cliente = pedido.getCliente();
-
 	}
-
 
 	public Long getId() {
 		return id;
@@ -112,7 +109,4 @@ public class Pedido {
 		return geo;
 	}
 
-	public void setGeo(Set<Geolocalizacao> geo) {
-		this.geo = geo;
-	}
 }

@@ -14,7 +14,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Geolocalizacao {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -25,14 +25,12 @@ public class Geolocalizacao {
 	@ManyToOne
 	@JoinColumn(name = "entregador_id")
 	private Entregador entregador;
-	
+
 	@OneToMany(mappedBy = "geo")
 	@JsonIgnore
 	private Pedido pedido;
-	
-	public Geolocalizacao() {
-		super();
-	}
+
+	public Geolocalizacao() {}
 
 	public Geolocalizacao(Long id, String latitude, String longitude, LocalDate data, Pedido pedido,
 			Entregador entregador) {
@@ -46,7 +44,7 @@ public class Geolocalizacao {
 	}
 
 	public Long getId() {
-	return id;
+		return id;
 	}
 
 	public void setId(Long id) {

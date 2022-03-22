@@ -16,20 +16,22 @@ import lombok.Setter;
 
 @Entity
 public class Cliente {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	private String nome;
 	private String endereco;
 	private String latitude;
 	private String longitude;
-	
+
 	@OneToMany(mappedBy = "cliente")
 	@JsonIgnore
 	private Set<Pedido> pedidos = new HashSet<>();
 	
+	public Cliente() {}
+
 	public Cliente(Long id, String nome, String endereco, String latitude, String longitude) {
 		super();
 		this.id = id;
@@ -37,10 +39,6 @@ public class Cliente {
 		this.endereco = endereco;
 		this.latitude = latitude;
 		this.longitude = longitude;
-	}
-
-	public Cliente() {
-		super();
 	}
 
 	public Long getId() {
@@ -87,7 +85,4 @@ public class Cliente {
 		return pedidos;
 	}
 
-	public void setPedidos(Set<Pedido> pedidos) {
-		this.pedidos = pedidos;
-	}
 }

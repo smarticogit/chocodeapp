@@ -26,18 +26,16 @@ public class Entregador {
 	@Column(name = "url_image")
 	private String urlImage;
 	
+	public Entregador() {}
 	
-	public Entregador(Long id, String nome, String email, String senha, String urlImage) {
+	public Entregador(Long id, String nome, String email, String senha, Geolocalizacao geo, String urlImage) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.email = email;
 		this.senha = senha;
+		this.geo = geo;
 		this.urlImage = urlImage;
-	}
-	
-	public Entregador() {
-		super();
 	}
 
 	public Long getId() {
@@ -78,6 +76,14 @@ public class Entregador {
 
 	public void setUrlImage(String urlImage) {
 		this.urlImage = urlImage;
+	}
+
+	public Geolocalizacao getGeo() {
+		return geo;
+	}
+
+	public void setGeo(Geolocalizacao geo) {
+		this.geo = geo;
 	}
 	
 	
