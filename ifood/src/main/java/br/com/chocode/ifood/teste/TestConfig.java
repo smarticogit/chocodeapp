@@ -14,7 +14,8 @@ import br.com.chocode.ifood.model.Pedido;
 
 @Configuration
 @Profile("test")
-public class TestConfig implements CommandLineRunner{
+public class TestConfig implements CommandLineRunner {
+	
 	@Autowired
 	private ClienteDAO clienteDao;
 
