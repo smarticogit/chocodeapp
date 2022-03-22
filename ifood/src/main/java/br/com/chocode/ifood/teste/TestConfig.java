@@ -30,10 +30,10 @@ public class TestConfig implements CommandLineRunner{
 
 		clienteDao.saveAll(Arrays.asList(c1, c2, c3));
 
-		Pedido p1 = new Pedido(null, "Aguarda Entrega", "Restaurante Um", c1);
-		Pedido p2 = new Pedido(null, "Aguarda Entrega", "Restaurante Dois", c2);
-		Pedido p3 = new Pedido(null, "Aguarda Entrega", "Restaurante Tres", c3);
-
-		pedidoDao.saveAll(Arrays.asList(p1, p2, p3));
+//		Pedido p1 = new Pedido(null, "Aguarda Entrega", "Restaurante Um", c1);
+//		Pedido p2 = new Pedido(null, "Aguarda Entrega", "Restaurante Dois", c2);
+//		Pedido p3 = new Pedido(null, "Aguarda Entrega", "Restaurante Tres", c3);
+//
+//		pedidoDao.saveAll(Arrays.asList(p1, p2, p3));
 	}
 }

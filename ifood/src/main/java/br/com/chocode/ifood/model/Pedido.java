@@ -1,5 +1,8 @@
 package br.com.chocode.ifood.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -47,14 +50,15 @@ public class Pedido {
 		this.entregador = entregador;
 		this.cliente = cliente;
 	}
-	
-	// public Pedido (PedidoDTO pedido) {
-	// 	this.id = pedido.getId();
-	// 	this.status = pedido.getStatus();
-	// 	this.nomeRestaurante = pedido.getNomeRestaurante();
-	// 	this.cliente = pedido.getCliente();
-		
-	// }
+
+	public Pedido(PedidoDTO pedido) {
+		this.id = pedido.getId();
+		this.status = pedido.getStatus();
+		this.nomeRestaurante = pedido.getNomeRestaurante();
+		this.cliente = pedido.getCliente();
+
+	}
+
 
 	public Long getId() {
 		return id;
