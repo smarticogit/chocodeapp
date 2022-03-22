@@ -29,4 +29,18 @@ public class Geolocalizacao {
 	@ManyToOne
 	private Entregador entregador;
 	
+	public Geolocalizacao() {
+		super();
+	}
+
+	public Geolocalizacao(Long id, String latitude, String longitude, LocalDate data, Pedido pedido,
+			Entregador entregador) {
+		super();
+		this.id = id;
+		this.latitude = latitude;
+		this.longitude = longitude;
+		this.data = data;
+		this.pedido = pedido;
+		this.entregador = entregador;
+	}
 }
