@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
 import br.com.chocode.ifood.dao.ClienteDAO;
-import br.com.chocode.ifood.dao.PedidoDao;
+import br.com.chocode.ifood.dao.PedidoDAO;
 import br.com.chocode.ifood.model.Cliente;
 import br.com.chocode.ifood.model.Pedido;
 
@@ -19,7 +19,7 @@ public class TestConfig implements CommandLineRunner{
 	private ClienteDAO clienteDao;
 
 	@Autowired
-	private PedidoDao pedidoDao;
+	private PedidoDAO pedidoDao;
 
 	@Override
 	public void run(String... args) throws Exception {

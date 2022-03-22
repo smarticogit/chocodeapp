@@ -10,16 +10,14 @@ public class PedidoDTO {
 	private String nomeRestaurante;
 	private Cliente cliente;
 	
+	public PedidoDTO() {}
+	
 	public PedidoDTO(Pedido pedido) {
 		super();
 		this.id = pedido.getId();
 		this.status = pedido.getStatus();
 		this.nomeRestaurante = pedido.getNomeRestaurante();
 		this.cliente = pedido.getCliente();
-	}
-	
-	public PedidoDTO() {
-		super();
 	}
 
 	public Long getId() {

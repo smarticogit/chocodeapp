@@ -6,8 +6,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import br.com.chocode.ifood.dao.GeolocalizacaoDao;
-import br.com.chocode.ifood.dao.PedidoDao;
+import br.com.chocode.ifood.dao.GeolocalizacaoDAO;
+import br.com.chocode.ifood.dao.PedidoDAO;
 import br.com.chocode.ifood.dto.PedidoDTO;
 import br.com.chocode.ifood.model.Pedido;
 
@@ -15,10 +15,10 @@ import br.com.chocode.ifood.model.Pedido;
 public class PedidoImpl implements IPedidoService{
 	
 	@Autowired
-	private PedidoDao pedidoDao;
+	private PedidoDAO pedidoDao;
 	
 	@Autowired
-	private GeolocalizacaoDao geoDao;
+	private GeolocalizacaoDAO geoDao;
 	
 	public List<PedidoDTO> findAll () {
 		List<Pedido> lista = (List<Pedido>) pedidoDao.findAll();
