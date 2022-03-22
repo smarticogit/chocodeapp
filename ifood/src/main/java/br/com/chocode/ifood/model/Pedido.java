@@ -12,38 +12,49 @@ import br.com.chocode.ifood.dto.PedidoDTO;
 
 @Entity
 public class Pedido {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String status;
-	
+
 	@Column(name = "nome_restaurante")
 	private String nomeRestaurante;
-	
+
+	private String produto;
+
+	private String status;
+
+	@ManyToOne
+	@JoinColumn(name = "geolocalizacao_id")
+	private Set<Geolocalizacao> geo = new HashSet<>();
+
+	@ManyToOne
+	@JoinColumn(name = "entregador_id")
+	private Entregador entregador;
+
 	@ManyToOne
 	@JoinColumn(name = "cliente_id")
 	private Cliente cliente;
 
-	public Pedido(Long id, String status, String nomeRestaurante, Cliente cliente) {
+	public Pedido(Long id, String nomeRestaurante, String produto, String status, Set<Geolocalizacao> geo,
+			Entregador entregador, Cliente cliente) {
 		super();
 		this.id = id;
-		this.status = status;
 		this.nomeRestaurante = nomeRestaurante;
+		this.produto = produto;
+		this.status = status;
+		this.geo = geo;
+		this.entregador = entregador;
 		this.cliente = cliente;
 	}
 	
-	public Pedido (PedidoDTO pedido) {
-		this.id = pedido.getId();
-		this.status = pedido.getStatus();
-		this.nomeRestaurante = pedido.getNomeRestaurante();
-		this.cliente = pedido.getCliente();
+	// public Pedido (PedidoDTO pedido) {
+	// 	this.id = pedido.getId();
+	// 	this.status = pedido.getStatus();
+	// 	this.nomeRestaurante = pedido.getNomeRestaurante();
+	// 	this.cliente = pedido.getCliente();
 		
-	}
-
-	public Pedido() {
-		super();
-	}
+	// }
 
 	public Long getId() {
 		return id;
@@ -75,5 +86,29 @@ public class Pedido {
 
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
+	}
+
+	public Entregador getEntregador() {
+		return entregador;
+	}
+
+	public void setEntregador(Entregador entregador) {
+		this.entregador = entregador;
+	}
+
+	public String getProduto() {
+		return produto;
+	}
+
+	public void setProduto(String produto) {
+		this.produto = produto;
+	}
+
+	public Set<Geolocalizacao> getGeo() {
+		return geo;
+	}
+
+	public void setGeo(Set<Geolocalizacao> geo) {
+		this.geo = geo;
 	}
 }
