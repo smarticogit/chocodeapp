@@ -8,8 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import lombok.Getter;
-import lombok.Setter;
+import br.com.chocode.ifood.dto.PedidoDTO;
 
 @Entity
 public class Pedido {
@@ -32,6 +31,14 @@ public class Pedido {
 		this.status = status;
 		this.nomeRestaurante = nomeRestaurante;
 		this.cliente = cliente;
+	}
+	
+	public Pedido (PedidoDTO pedido) {
+		this.id = pedido.getId();
+		this.status = pedido.getStatus();
+		this.nomeRestaurante = pedido.getNomeRestaurante();
+		this.cliente = pedido.getCliente();
+		
 	}
 
 	public Pedido() {
