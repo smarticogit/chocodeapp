@@ -7,7 +7,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
-import br.com.chocode.ifood.dao.ClienteDao;
+import br.com.chocode.ifood.dao.ClienteDAO;
 import br.com.chocode.ifood.dao.PedidoDao;
 import br.com.chocode.ifood.model.Cliente;
 import br.com.chocode.ifood.model.Pedido;
@@ -16,7 +16,7 @@ import br.com.chocode.ifood.model.Pedido;
 @Profile("test")
 public class TestConfig implements CommandLineRunner{
 	@Autowired
-	private ClienteDao clienteDao;
+	private ClienteDAO clienteDao;
 
 	@Autowired
 	private PedidoDao pedidoDao;

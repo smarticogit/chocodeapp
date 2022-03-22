@@ -19,17 +19,17 @@ import br.com.chocode.ifood.service.IPedidoService;
 @CrossOrigin("*")
 @RequestMapping("/pedido")
 public class PedidoController {
-	
+
 	@Autowired
 	private IPedidoService service;
-	
+
 	@GetMapping("/findall")
 	public ResponseEntity<List<PedidoDTO>> findAll() {
 		return ResponseEntity.ok(service.findAll());
 	}
-	
+
 	@PutMapping("/status/{id}")
-	public ResponseEntity <PedidoDTO> update (@PathVariable Long id, @RequestBody String status) {
+	public ResponseEntity<PedidoDTO> update(@PathVariable Long id, @RequestBody String status) {
 		return ResponseEntity.ok(service.update(id, status));
 	}
 }
