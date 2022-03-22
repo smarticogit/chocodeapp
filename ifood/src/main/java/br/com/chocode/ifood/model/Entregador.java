@@ -18,6 +18,10 @@ public class Entregador {
 	private String nome;
 	private String email;
 	private String senha;
+
+	@OneToMany(mappedBy = "entregador")
+	@JsonIgnore
+	private Geolocalizacao geo;
 	
 	@Column(name = "url_image")
 	private String urlImage;
