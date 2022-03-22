@@ -8,12 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
-import lombok.Getter;
-import lombok.Setter;
-
 @Entity
-@Getter
-@Setter
 public class Geolocalizacao {
 	
 	@Id
@@ -22,12 +17,14 @@ public class Geolocalizacao {
 	private String latitude;
 	private String longitude;
 	private LocalDate data;
-	
+
 	@ManyToOne
-	private Pedido pedido;
-	
-	@ManyToOne
+	@JoinColumn(name = "entregador_id")
 	private Entregador entregador;
+	
+	@OneToMany(mappebBy = "geo")
+	@JsonIgnore
+	private Pedido pedido;
 	
 	public Geolocalizacao() {
 		super();
@@ -42,5 +39,53 @@ public class Geolocalizacao {
 		this.data = data;
 		this.pedido = pedido;
 		this.entregador = entregador;
+	}
+
+	public Long getId() {
+	return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(String longitude) {
+		this.longitude = longitude;
+	}
+
+	public String getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(String latitude) {
+		this.latitude = latitude;
+	}
+
+	public LocalDate getData() {
+		return data;
+	}
+
+	public void setData(LocalDate data) {
+		this.data = data;
+	}
+
+	public Entregador getEntregador() {
+		return entregador;
+	}
+
+	public void setEntregador(Entregador entregador) {
+		this.entregador = entregador;
+	}
+
+	public Pedido getPedido() {
+		return pedido;
+	}
+
+	public void setPedido(Pedido pedido) {
+		this.pedido = pedido;
 	}
 }
