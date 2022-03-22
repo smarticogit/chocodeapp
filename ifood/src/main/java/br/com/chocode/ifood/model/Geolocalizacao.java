@@ -21,6 +21,10 @@ public class Geolocalizacao {
 	private String latitude;
 	private String longitude;
 	private LocalDate data;
+	// Verificar o uso do LocalDateTime ou Instant
+	// minha sugestão: Utilizar o Instant, que representa um momento (data e hora) no tempo em UTC
+	// @JsonFormat(shape = JsonFormat.Shape.STRING, pattern ="yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
+	// private Instant data;
 
 	@ManyToOne
 	@JoinColumn(name = "entregador_id")
@@ -30,7 +34,8 @@ public class Geolocalizacao {
 	@JsonIgnore
 	private Pedido pedido;
 
-	public Geolocalizacao() {}
+	public Geolocalizacao() {
+	}
 
 	public Geolocalizacao(Long id, String latitude, String longitude, LocalDate data, Pedido pedido,
 			Entregador entregador) {
