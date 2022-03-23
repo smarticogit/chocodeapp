@@ -14,9 +14,9 @@ public class GeolocalizacaoDTO {
 	private String latitude;
 	private LocalDateTime data;
 	private EntregadorDTO entregador;
-	private Set<PedidoDTO> pedido = new HashSet<>();
+	private PedidoDTO pedido;
 	
-	public GeolocalizacaoDTO(Long id, String longitude, String latitude, LocalDateTime data, EntregadorDTO entregador, Set<PedidoDTO> pedido) {
+	public GeolocalizacaoDTO(Long id, String longitude, String latitude, LocalDateTime data, EntregadorDTO entregador, PedidoDTO pedido) {
 		
 		super();
 		this.id = id;
@@ -34,53 +34,56 @@ public class GeolocalizacaoDTO {
 			this.latitude = geo.getLatitude();
 			this.data = geo.getData();
 			this.entregador = new EntregadorDTO(geo.getEntregador());
-			for(Pedido pedido : geo.getPedido()) {
-				this.pedido.add(new PedidoDTO(pedido));
-			}
+			this.pedido = new PedidoDTO(geo.getPedido());
 		}
-	
-	
-	public Set<PedidoDTO> getPedido() {
-		return pedido;
-	}
-
-	public GeolocalizacaoDTO() {
-		super();
-	}
-
-
 
 	public Long getId() {
 		return id;
 	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
+
 	public String getLongitude() {
 		return longitude;
 	}
+
 	public void setLongitude(String longitude) {
 		this.longitude = longitude;
 	}
+
 	public String getLatitude() {
 		return latitude;
 	}
+
 	public void setLatitude(String latitude) {
 		this.latitude = latitude;
 	}
+
 	public LocalDateTime getData() {
 		return data;
 	}
+
 	public void setData(LocalDateTime data) {
 		this.data = data;
 	}
+
 	public EntregadorDTO getEntregador() {
 		return entregador;
 	}
+
 	public void setEntregador(EntregadorDTO entregador) {
 		this.entregador = entregador;
 	}
-	
-	
 
+	public PedidoDTO getPedido() {
+		return pedido;
+	}
+
+	public void setPedido(PedidoDTO pedido) {
+		this.pedido = pedido;
+	}
+	
+	
 }

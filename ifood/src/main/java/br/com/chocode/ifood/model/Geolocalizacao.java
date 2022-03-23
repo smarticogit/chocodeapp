@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import br.com.chocode.ifood.dto.GeolocalizacaoDTO;
 import br.com.chocode.ifood.dto.PedidoDTO;
@@ -26,24 +27,24 @@ public class Geolocalizacao {
 	
 	@ManyToOne
 	@JoinColumn(name = "entregador_id")
-	private Entregador entregador;
+	private Entregador entregadorG;
 
 	@ManyToOne
 	@JoinColumn(name = "pedido_id")
-	private Set<Pedido> pedido = new HashSet<>();
+	private Pedido pedido;
 
 	public Geolocalizacao() {
 	}
 	
 
 	public Geolocalizacao(Long id, String latitude, String longitude, LocalDateTime data, Entregador entregador,
-			Set<Pedido> pedido) {
+			Pedido pedido) {
 		super();
 		this.id = id;
 		this.latitude = latitude;
 		this.longitude = longitude;
 		this.data = data;
-		this.entregador = entregador;
+		this.entregadorG = entregador;
 		this.pedido = pedido;
 	}
 	
@@ -54,10 +55,9 @@ public class Geolocalizacao {
 			this.longitude = geo.getLongitude();
 			this.latitude = geo.getLatitude();
 			this.data = geo.getData();
-			this.entregador = new Entregador(geo.getEntregador());
-			for(PedidoDTO pedidoDTO : geo.getPedido()) {
-				pedido.add(new Pedido(pedidoDTO));
-			}
+			this.entregadorG = new Entregador(geo.getEntregador());
+			this.pedido = new Pedido(geo.getPedido());
+		
 		}
 
 	public Long getId() {
@@ -93,18 +93,34 @@ public class Geolocalizacao {
 	}
 
 	public Entregador getEntregador() {
-		return entregador;
+		return entregadorG;
 	}
 
 	public void setEntregador(Entregador entregador) {
-		this.entregador = entregador;
+		this.entregadorG = entregador;
 	}
 
 
+	public Entregador getEntregadorG() {
+		return entregadorG;
+	}
 
-	public Set<Pedido> getPedido() {
+
+	public void setEntregadorG(Entregador entregadorG) {
+		this.entregadorG = entregadorG;
+	}
+
+
+	public Pedido getPedido() {
 		return pedido;
 	}
+
+
+	public void setPedido(Pedido pedido) {
+		this.pedido = pedido;
+	}
+
+
 
 
 
