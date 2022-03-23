@@ -34,7 +34,7 @@ public class Pedido {
 
 	@ManyToOne
 	@JoinColumn(name = "entregador_id")
-	private Entregador entregador;
+	private Entregador entregadorP;
 
 	@ManyToOne
 	@JoinColumn(name = "cliente_id")
@@ -48,7 +48,7 @@ public class Pedido {
 		this.produto = produto;
 		this.status = status;
 		this.geo = geo;
-		this.entregador = entregador;
+		this.entregadorP = entregador;
 		this.cliente = cliente;
 	}
 
@@ -60,7 +60,7 @@ public class Pedido {
 		for (GeolocalizacaoDTO geoDTO : pedido.getGeo()) {
 			this.geo.add(new Geolocalizacao(geoDTO));
 		}
-		this.entregador = new Entregador(pedido.getEntregador());
+		this.entregadorP = new Entregador(pedido.getEntregador());
 		this.cliente = new Cliente(pedido.getCliente());
 		
 	}
@@ -103,11 +103,11 @@ public class Pedido {
 
 
 	public Entregador getEntregador() {
-		return entregador;
+		return entregadorP;
 	}
 
 	public void setEntregador(Entregador entregador) {
-		this.entregador = entregador;
+		this.entregadorP = entregador;
 	}
 
 	public Cliente getCliente() {

@@ -13,8 +13,8 @@ import br.com.chocode.ifood.services.ILoginService;
 @CrossOrigin("*")
 public class LoginController {
 	
-	@Autowired
-	private ILoginService service;
+//	@Autowired
+//	private ILoginService service;
 	
 	@PostMapping("/login")
 	public ResponseEntity<String> login(@RequestBody String email, @RequestBody String senha){

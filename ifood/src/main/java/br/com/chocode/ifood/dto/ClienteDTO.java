@@ -13,7 +13,7 @@ public class ClienteDTO {
 	private String endereco;
 	private String longitude;
 	private String latitude;
-	private Set<PedidoDTO> pedidos = new HashSet<>();
+	private Set<PedidoDTO> pedidosDTO = new HashSet<>();
 	
 	public ClienteDTO(Long id, String nome, String endereco, String longitude, String latitude, Set<PedidoDTO> pedidos) {
 		super();
@@ -22,7 +22,7 @@ public class ClienteDTO {
 		this.endereco = endereco;
 		this.longitude = longitude;
 		this.latitude = latitude;
-		this.pedidos = pedidos;
+		this.pedidosDTO = pedidos;
 	}
 	
 	public ClienteDTO(Cliente cliente) {
@@ -33,7 +33,7 @@ public class ClienteDTO {
 		this.longitude = cliente.getLongitude();
 		this.latitude = cliente.getLatitude();
 		for (Pedido pedido : cliente.getPedidos()) {
-			this.pedidos.add(new PedidoDTO(pedido));
+			this.pedidosDTO.add(new PedidoDTO(pedido));
 			}
 	}
 	
@@ -82,7 +82,7 @@ public class ClienteDTO {
 	}
 
 	public Set<PedidoDTO> getPedido() {
-		return pedidos;
+		return pedidosDTO;
 	}
 	
 	

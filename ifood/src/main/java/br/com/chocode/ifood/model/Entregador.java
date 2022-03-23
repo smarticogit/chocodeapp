@@ -29,11 +29,11 @@ public class Entregador {
 	@Column(name = "url_image")
 	private String urlImage;
 
-	@OneToMany(mappedBy = "entregador")
+	@OneToMany(mappedBy = "entregadorG")
 	@JsonIgnore
 	private Set<Geolocalizacao> geo = new HashSet<>();
 	
-	@OneToMany(mappedBy = "entregador")
+	@OneToMany(mappedBy = "entregadorP")
 	@JsonIgnore
 	private Set<Pedido> pedido = new HashSet<>();
 	
