@@ -1,6 +1,10 @@
 package br.com.chocode.ifood.dto;
 
-import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
+
+import br.com.chocode.ifood.model.Cliente;
+import br.com.chocode.ifood.model.Pedido;
 
 public class ClienteDTO {
 	
@@ -9,16 +13,28 @@ public class ClienteDTO {
 	private String endereco;
 	private String longitude;
 	private String latitude;
-	private PedidoDTO pedido;
+	private Set<PedidoDTO> pedidos = new HashSet<>();
 	
-	public ClienteDTO(Long id, String nome, String endereco, String longitude, String latitude, PedidoDTO pedido) {
+	public ClienteDTO(Long id, String nome, String endereco, String longitude, String latitude, Set<PedidoDTO> pedidos) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.endereco = endereco;
 		this.longitude = longitude;
 		this.latitude = latitude;
-		this.pedido = pedido;
+		this.pedidos = pedidos;
+	}
+	
+	public ClienteDTO(Cliente cliente) {
+		super();
+		this.id = cliente.getId();
+		this.nome = cliente.getNome();
+		this.endereco = cliente.getEndereco();
+		this.longitude = cliente.getLongitude();
+		this.latitude = cliente.getLatitude();
+		for (Pedido pedido : cliente.getPedidos()) {
+			this.pedidos.add(new PedidoDTO(pedido));
+			}
 	}
 	
 	public ClienteDTO() {
@@ -65,15 +81,9 @@ public class ClienteDTO {
 		this.latitude = latitude;
 	}
 
-	public PedidoDTO getPedido() {
-		return pedido;
+	public Set<PedidoDTO> getPedido() {
+		return pedidos;
 	}
-
-	public void setPedido(PedidoDTO pedido) {
-		this.pedido = pedido;
-	}
-	
-	
 	
 	
 

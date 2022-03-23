@@ -12,6 +12,7 @@ import javax.persistence.OneToMany;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import br.com.chocode.ifood.dto.ClienteDTO;
+import br.com.chocode.ifood.dto.PedidoDTO;
 
 @Entity
 public class Cliente {
@@ -47,6 +48,9 @@ public class Cliente {
 		this.endereco = clienteDTO.getEndereco();
 		this.latitude = clienteDTO.getLatitude();
 		this.longitude = clienteDTO.getLongitude();
+		for (PedidoDTO pedidoDTO : clienteDTO.getPedido()) {
+		this.pedidos.add(new Pedido(pedidoDTO));
+		}
 	}
 
 	public Long getId() {
