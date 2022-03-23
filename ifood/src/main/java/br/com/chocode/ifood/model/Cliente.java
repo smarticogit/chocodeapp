@@ -3,6 +3,7 @@ package br.com.chocode.ifood.model;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -26,7 +27,7 @@ public class Cliente {
 	private String latitude;
 	private String longitude;
 
-	@OneToMany(mappedBy = "cliente")
+	@OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
 	@JsonIgnore
 	private Set<Pedido> pedidos = new HashSet<>();
 	
