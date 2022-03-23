@@ -10,9 +10,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import br.com.chocode.ifood.dto.GeolocalizacaoDTO;
+import br.com.chocode.ifood.dto.PedidoDTO;
 
 @Entity
 public class Geolocalizacao {
@@ -24,15 +24,12 @@ public class Geolocalizacao {
 	private String longitude;
 	private LocalDateTime data;
 	
-	
-	// TimeStamp?
-
 	@ManyToOne
 	@JoinColumn(name = "entregador_id")
 	private Entregador entregador;
 
-	@OneToMany(mappedBy = "geo")
-	@JsonIgnore
+	@ManyToOne
+	@JoinColumn(name = "pedido_id")
 	private Set<Pedido> pedido = new HashSet<>();
 
 	public Geolocalizacao() {
@@ -50,6 +47,18 @@ public class Geolocalizacao {
 		this.pedido = pedido;
 	}
 	
+	public Geolocalizacao(GeolocalizacaoDTO geo) {
+			
+			super();
+			this.id = geo.getId();
+			this.longitude = geo.getLongitude();
+			this.latitude = geo.getLatitude();
+			this.data = geo.getData();
+			this.entregador = new Entregador(geo.getEntregador());
+			for(PedidoDTO pedidoDTO : geo.getPedido()) {
+				pedido.add(new Pedido(pedidoDTO));
+			}
+		}
 
 	public Long getId() {
 		return id;
@@ -98,10 +107,6 @@ public class Geolocalizacao {
 	}
 
 
-
-	public void setPedido(Set<Pedido> pedido) {
-		this.pedido = pedido;
-	}
 
 
 }

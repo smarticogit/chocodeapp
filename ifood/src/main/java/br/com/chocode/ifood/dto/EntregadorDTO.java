@@ -1,6 +1,11 @@
 package br.com.chocode.ifood.dto;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import br.com.chocode.ifood.model.Entregador;
+import br.com.chocode.ifood.model.Geolocalizacao;
+import br.com.chocode.ifood.model.Pedido;
 
 public class EntregadorDTO {
 	
@@ -9,6 +14,8 @@ public class EntregadorDTO {
 	private String email;
 	private String senha;
 	private String urlImage;
+	private Set<GeolocalizacaoDTO> geo = new HashSet<>();
+	private Set<PedidoDTO> pedido = new HashSet<>();
 	
 	
 	public EntregadorDTO() {}
@@ -20,6 +27,20 @@ public class EntregadorDTO {
 		this.email = entregador.getEmail();
 		this.senha = entregador.getSenha();
 		this.urlImage = entregador.getUrlImage();
+		for(Geolocalizacao geo : entregador.getGeo()) {
+			this.geo.add(new GeolocalizacaoDTO(geo));
+		}
+		for(Pedido pedido : entregador.getPedido()) {
+			this.pedido.add(new PedidoDTO(pedido));
+		}
+	}
+
+	public Set<GeolocalizacaoDTO> getGeo() {
+		return geo;
+	}
+
+	public Set<PedidoDTO> getPedido() {
+		return pedido;
 	}
 
 	public Long getId() {

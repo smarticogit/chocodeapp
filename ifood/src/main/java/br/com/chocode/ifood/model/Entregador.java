@@ -12,6 +12,10 @@ import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import br.com.chocode.ifood.dto.EntregadorDTO;
+import br.com.chocode.ifood.dto.GeolocalizacaoDTO;
+import br.com.chocode.ifood.dto.PedidoDTO;
+
 @Entity
 public class Entregador {
 	
@@ -21,6 +25,9 @@ public class Entregador {
 	private String nome;
 	private String email; //unic?
 	private String senha;
+	
+	@Column(name = "url_image")
+	private String urlImage;
 
 	@OneToMany(mappedBy = "entregador")
 	@JsonIgnore
@@ -30,22 +37,26 @@ public class Entregador {
 	@JsonIgnore
 	private Set<Pedido> pedido = new HashSet<>();
 	
-	@Column(name = "url_image")
-	private String urlImage;
+	
 	
 	public Entregador() {}
 	
-
-	public Entregador(Long id, String nome, String email, String senha, Set<Geolocalizacao> geo, Set<Pedido> pedido,
-			String urlImage) {
+	
+	public Entregador(EntregadorDTO entregador) {
 		super();
-		this.id = id;
-		this.nome = nome;
-		this.email = email;
-		this.senha = senha;
-		this.geo = geo;
-		this.pedido = pedido;
-		this.urlImage = urlImage;
+		this.id = entregador.getId();
+		this.nome = entregador.getNome();
+		this.email = entregador.getEmail();
+		this.senha = entregador.getSenha();
+		this.urlImage = entregador.getUrlImage();
+		for (GeolocalizacaoDTO geoDTO : entregador.getGeo()) {
+			this.geo.add(new Geolocalizacao(geoDTO));
+		}
+		for (PedidoDTO pedidoDTO : entregador.getPedido()) {
+			this.pedido.add(new Pedido(pedidoDTO));
+		}
+		
+		
 	}
 
 
@@ -93,10 +104,6 @@ public class Entregador {
 		return geo;
 	}
 
-
-	public void setGeo(Set<Geolocalizacao> geo) {
-		this.geo = geo;
-	}
 
 
 	public Set<Pedido> getPedido() {
