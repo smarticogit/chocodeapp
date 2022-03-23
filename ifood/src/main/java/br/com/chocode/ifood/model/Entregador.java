@@ -3,6 +3,7 @@ package br.com.chocode.ifood.model;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -29,14 +30,13 @@ public class Entregador {
 	@Column(name = "url_image")
 	private String urlImage;
 
-	@OneToMany(mappedBy = "entregadorG")
+	@OneToMany(mappedBy = "entregadorG", cascade = CascadeType.ALL)
 	@JsonIgnore
 	private Set<Geolocalizacao> geo = new HashSet<>();
 	
-	@OneToMany(mappedBy = "entregadorP")
+	@OneToMany(mappedBy = "entregadorP", cascade = CascadeType.ALL)
 	@JsonIgnore
 	private Set<Pedido> pedido = new HashSet<>();
-	
 	
 	
 	public Entregador() {}
