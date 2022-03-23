@@ -32,4 +32,6 @@ public class PedidoController {
 	public ResponseEntity<PedidoDTO> update(@PathVariable Long id, @RequestBody String status) {
 		return ResponseEntity.ok(service.update(id, status));
 	}
+	
+	
 }

@@ -10,6 +10,7 @@ public class EntregadorDTO {
 	private String senha;
 	private String urlImage;
 	
+	
 	public EntregadorDTO() {}
 
 	public EntregadorDTO(Entregador entregador) {

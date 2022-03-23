@@ -1,6 +1,8 @@
 package br.com.chocode.ifood.model;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,11 +22,10 @@ public class Geolocalizacao {
 	private Long id;
 	private String latitude;
 	private String longitude;
-	private LocalDate data;
-	// Verificar o uso do LocalDateTime ou Instant
-	// minha sugestão: Utilizar o Instant, que representa um momento (data e hora) no tempo em UTC
-	// @JsonFormat(shape = JsonFormat.Shape.STRING, pattern ="yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
-	// private Instant data;
+	private LocalDateTime data;
+	
+	
+	// TimeStamp?
 
 	@ManyToOne
 	@JoinColumn(name = "entregador_id")
@@ -32,21 +33,23 @@ public class Geolocalizacao {
 
 	@OneToMany(mappedBy = "geo")
 	@JsonIgnore
-	private Pedido pedido;
+	private Set<Pedido> pedido = new HashSet<>();
 
 	public Geolocalizacao() {
 	}
+	
 
-	public Geolocalizacao(Long id, String latitude, String longitude, LocalDate data, Pedido pedido,
-			Entregador entregador) {
+	public Geolocalizacao(Long id, String latitude, String longitude, LocalDateTime data, Entregador entregador,
+			Set<Pedido> pedido) {
 		super();
 		this.id = id;
 		this.latitude = latitude;
 		this.longitude = longitude;
 		this.data = data;
-		this.pedido = pedido;
 		this.entregador = entregador;
+		this.pedido = pedido;
 	}
+	
 
 	public Long getId() {
 		return id;
@@ -72,11 +75,11 @@ public class Geolocalizacao {
 		this.latitude = latitude;
 	}
 
-	public LocalDate getData() {
+	public LocalDateTime getData() {
 		return data;
 	}
 
-	public void setData(LocalDate data) {
+	public void setData(LocalDateTime data) {
 		this.data = data;
 	}
 
@@ -88,11 +91,17 @@ public class Geolocalizacao {
 		this.entregador = entregador;
 	}
 
-	public Pedido getPedido() {
+
+
+	public Set<Pedido> getPedido() {
 		return pedido;
 	}
 
-	public void setPedido(Pedido pedido) {
+
+
+	public void setPedido(Set<Pedido> pedido) {
 		this.pedido = pedido;
 	}
+
+
 }

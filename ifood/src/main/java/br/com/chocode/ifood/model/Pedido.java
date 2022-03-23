@@ -28,7 +28,7 @@ public class Pedido {
 
 	@ManyToOne
 	@JoinColumn(name = "geolocalizacao_id")
-	private Set<Geolocalizacao> geo = new HashSet<>();
+	private Geolocalizacao geo;
 
 	@ManyToOne
 	@JoinColumn(name = "entregador_id")
@@ -38,7 +38,7 @@ public class Pedido {
 	@JoinColumn(name = "cliente_id")
 	private Cliente cliente;
 
-	public Pedido(Long id, String nomeRestaurante, String produto, String status, Set<Geolocalizacao> geo,
+	public Pedido(Long id, String nomeRestaurante, String produto, String status, Geolocalizacao geo,
 			Entregador entregador, Cliente cliente) {
 		super();
 		this.id = id;
@@ -105,8 +105,12 @@ public class Pedido {
 		this.produto = produto;
 	}
 
-	public Set<Geolocalizacao> getGeo() {
+	public Geolocalizacao getGeo() {
 		return geo;
+	}
+	
+	public void setGeo(Geolocalizacao geo) {
+		this.geo = geo;
 	}
 
 }

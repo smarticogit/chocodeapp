@@ -11,8 +11,7 @@ import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import lombok.Getter;
-import lombok.Setter;
+import br.com.chocode.ifood.dto.ClienteDTO;
 
 @Entity
 public class Cliente {
@@ -39,6 +38,15 @@ public class Cliente {
 		this.endereco = endereco;
 		this.latitude = latitude;
 		this.longitude = longitude;
+	}
+	
+	public Cliente(ClienteDTO clienteDTO) {
+		super();
+		this.id = clienteDTO.getId();
+		this.nome = clienteDTO.getNome() ;
+		this.endereco = clienteDTO.getEndereco();
+		this.latitude = clienteDTO.getLatitude();
+		this.longitude = clienteDTO.getLongitude();
 	}
 
 	public Long getId() {
