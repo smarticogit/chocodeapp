@@ -24,7 +24,7 @@ public class PedidoController {
 
 	@GetMapping("/pedidos")
 	public ResponseEntity<List<PedidoDTO>> findAll() {
-		return ResponseEntity.ok(service.findAll());
+		return ResponseEntity.status(200).body(service.findAll());
 	}
 
 	@PutMapping("/pedido/{id}/status/")
