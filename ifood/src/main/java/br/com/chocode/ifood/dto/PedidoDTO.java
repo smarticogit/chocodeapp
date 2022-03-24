@@ -2,6 +2,7 @@ package br.com.chocode.ifood.dto;
 
 import java.util.HashSet;
 import java.util.Set;
+
 import br.com.chocode.ifood.model.Geolocalizacao;
 import br.com.chocode.ifood.model.Pedido;
 
@@ -59,8 +60,13 @@ public class PedidoDTO {
 		return status;
 	}
 
-	public void setStatus(String status) {
-		this.status = status;
+	public Boolean setStatus(String status) {
+		if(status == "Entregue" || status == "Cancelado") {
+			this.status = status;
+			return true;
+		}
+		return false;
+			
 	}
 
 	public Set<GeolocalizacaoDTO> getGeo() {

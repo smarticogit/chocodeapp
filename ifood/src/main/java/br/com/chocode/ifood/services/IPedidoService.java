@@ -8,5 +8,5 @@ public interface IPedidoService {
 
 	public List<PedidoDTO> findAll();
 
-	public PedidoDTO update(Long id, String status);
+	public PedidoDTO updateStatus(Long id, String status);
 }

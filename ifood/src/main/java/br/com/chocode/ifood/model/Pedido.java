@@ -96,7 +96,8 @@ public class Pedido {
 	}
 
 	public void setStatus(String status) {
-		this.status = status;
+		if(status == "Entregue" || status == "Cancelado")
+			this.status = status;
 	}
 
 	public Set<Geolocalizacao> getGeo() {

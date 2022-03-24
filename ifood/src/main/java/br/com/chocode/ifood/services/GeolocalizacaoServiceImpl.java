@@ -8,6 +8,10 @@ import br.com.chocode.ifood.dao.GeolocalizacaoDAO;
 @Component
 public class GeolocalizacaoServiceImpl implements IGeolocalizacaoService {
 
-	@Autowired
-	private GeolocalizacaoDAO dao;
+//	@Autowired
+//	private GeolocalizacaoDAO dao;
+//	
+//	private GeolocalizacaoDTO save(Long id)
+	
+	
 }

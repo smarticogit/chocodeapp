@@ -28,19 +28,10 @@ public class PedidoController {
 	}
 
 	@PutMapping("/pedido/{id}/status/")
-	public ResponseEntity<PedidoDTO> update(@PathVariable Long id, @RequestBody String status) {
-		return ResponseEntity.ok(service.update(id, status));
+	public ResponseEntity<PedidoDTO> updateStatus(@PathVariable Long id, @RequestBody String status) {
+		return ResponseEntity.ok(service.updateStatus(id, status));
 	}
 	
-	@GetMapping("/pedido/{id}/geolocalizacao")
-	public String texto () {
-		return "ok";
-	}
-	
-	@PostMapping("/pedido/{id}/geolocalizacao")
-	public String texto2 () {
-		return "ok";
-	}
 	
 	@PostMapping("/pedido/{id_pedido}/entregador/{id_entregador}")
 	public String texto3 () {
