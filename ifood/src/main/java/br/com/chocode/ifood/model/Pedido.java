@@ -24,7 +24,6 @@ public class Pedido {
 
 	@Column(name = "nome_restaurante")
 	private String nomeRestaurante;
-
 	private String produto;
 	private String status;
 
@@ -101,7 +100,6 @@ public class Pedido {
 		return geo;
 	}
 
-
 	public Entregador getEntregador() {
 		return entregadorP;
 	}
@@ -117,7 +115,5 @@ public class Pedido {
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
-
-	
 
 }

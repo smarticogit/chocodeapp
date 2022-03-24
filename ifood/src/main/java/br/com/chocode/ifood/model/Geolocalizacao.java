@@ -33,10 +33,8 @@ public class Geolocalizacao {
 	@JoinColumn(name = "pedido_id")
 	private Pedido pedido;
 
-	public Geolocalizacao() {
-	}
+	public Geolocalizacao() {}
 	
-
 	public Geolocalizacao(Long id, String latitude, String longitude, LocalDateTime data, Entregador entregador,
 			Pedido pedido) {
 		super();
@@ -100,29 +98,20 @@ public class Geolocalizacao {
 		this.entregadorG = entregador;
 	}
 
-
 	public Entregador getEntregadorG() {
 		return entregadorG;
 	}
-
 
 	public void setEntregadorG(Entregador entregadorG) {
 		this.entregadorG = entregadorG;
 	}
 
-
 	public Pedido getPedido() {
 		return pedido;
 	}
 
-
 	public void setPedido(Pedido pedido) {
 		this.pedido = pedido;
 	}
-
-
-
-
-
 
 }

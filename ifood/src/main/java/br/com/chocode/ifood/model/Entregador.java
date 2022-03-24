@@ -23,7 +23,8 @@ public class Entregador {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nome;
-	private String email; //unic?
+	@Column(unique = true)
+	private String email; 
 	private String senha;
 	
 	@Column(name = "url_image")
@@ -37,10 +38,7 @@ public class Entregador {
 	@JsonIgnore
 	private Set<Pedido> pedido = new HashSet<>();
 	
-	
-	
 	public Entregador() {}
-	
 	
 	public Entregador(EntregadorDTO entregador) {
 		super();
@@ -59,74 +57,56 @@ public class Entregador {
 		
 	}
 
-
 	public Long getId() {
 		return id;
 	}
-
 
 	public void setId(Long id) {
 		this.id = id;
 	}
 
-
 	public String getNome() {
 		return nome;
 	}
-
 
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
 
-
 	public String getEmail() {
 		return email;
 	}
-
 
 	public void setEmail(String email) {
 		this.email = email;
 	}
 
-
 	public String getSenha() {
 		return senha;
 	}
-
 
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
 
-
 	public Set<Geolocalizacao> getGeo() {
 		return geo;
 	}
-
-
 
 	public Set<Pedido> getPedido() {
 		return pedido;
 	}
 
-
 	public void setPedido(Set<Pedido> pedido) {
 		this.pedido = pedido;
 	}
-
 
 	public String getUrlImage() {
 		return urlImage;
 	}
 
-
 	public void setUrlImage(String urlImage) {
 		this.urlImage = urlImage;
 	}
-
-
-
-	
 	
 }

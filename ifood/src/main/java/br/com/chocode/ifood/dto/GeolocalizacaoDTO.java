@@ -17,7 +17,6 @@ public class GeolocalizacaoDTO {
 	private PedidoDTO pedido;
 	
 	public GeolocalizacaoDTO(Long id, String longitude, String latitude, LocalDateTime data, EntregadorDTO entregador, PedidoDTO pedido) {
-		
 		super();
 		this.id = id;
 		this.longitude = longitude;

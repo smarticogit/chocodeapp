@@ -84,7 +84,5 @@ public class ClienteDTO {
 	public Set<PedidoDTO> getPedido() {
 		return pedidosDTO;
 	}
-	
-	
 
 }
