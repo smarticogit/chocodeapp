@@ -13,10 +13,6 @@ import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import br.com.chocode.ifood.dto.EntregadorDTO;
-import br.com.chocode.ifood.dto.GeolocalizacaoDTO;
-import br.com.chocode.ifood.dto.PedidoDTO;
-
 @Entity
 public class Entregador {
 	
@@ -24,7 +20,7 @@ public class Entregador {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nome;
-	private String email; //unic?
+	private String email;
 	private String senha;
 	
 	@Column(name = "url_image")
@@ -32,101 +28,82 @@ public class Entregador {
 
 	@OneToMany(mappedBy = "entregadorG", cascade = CascadeType.ALL)
 	@JsonIgnore
-	private Set<Geolocalizacao> geo = new HashSet<>();
+	private Set<Long> idGeo = new HashSet<>();
 	
 	@OneToMany(mappedBy = "entregadorP", cascade = CascadeType.ALL)
 	@JsonIgnore
-	private Set<Pedido> pedido = new HashSet<>();
+	private Set<Long> idPedido = new HashSet<>();
 	
 	
 	public Entregador() {}
 	
-	
-	public Entregador(EntregadorDTO entregador) {
+	public Entregador(Long id, String nome, String email, String senha, String urlImage, Set<Long> idGeo,
+			Set<Long> idPedido) {
 		super();
-		this.id = entregador.getId();
-		this.nome = entregador.getNome();
-		this.email = entregador.getEmail();
-		this.senha = entregador.getSenha();
-		this.urlImage = entregador.getUrlImage();
-		for (GeolocalizacaoDTO geoDTO : entregador.getGeo()) {
-			this.geo.add(new Geolocalizacao(geoDTO));
-		}
-		for (PedidoDTO pedidoDTO : entregador.getPedido()) {
-			this.pedido.add(new Pedido(pedidoDTO));
-		}
-		
-		
+		this.id = id;
+		this.nome = nome;
+		this.email = email;
+		this.senha = senha;
+		this.urlImage = urlImage;
+		this.idGeo = idGeo;
+		this.idPedido = idPedido;
 	}
-
 
 	public Long getId() {
 		return id;
 	}
 
-
 	public void setId(Long id) {
 		this.id = id;
 	}
-
 
 	public String getNome() {
 		return nome;
 	}
 
-
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-
 
 	public String getEmail() {
 		return email;
 	}
 
-
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
 
 	public String getSenha() {
 		return senha;
 	}
 
-
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-
-
-	public Set<Geolocalizacao> getGeo() {
-		return geo;
-	}
-
-
-
-	public Set<Pedido> getPedido() {
-		return pedido;
-	}
-
-
-	public void setPedido(Set<Pedido> pedido) {
-		this.pedido = pedido;
-	}
-
 
 	public String getUrlImage() {
 		return urlImage;
 	}
 
-
 	public void setUrlImage(String urlImage) {
 		this.urlImage = urlImage;
 	}
 
+	public Set<Long> getIdGeo() {
+		return idGeo;
+	}
 
+	public void setIdGeo(Set<Long> idGeo) {
+		this.idGeo = idGeo;
+	}
 
-	
+	public Set<Long> getIdPedido() {
+		return idPedido;
+	}
+
+	public void setIdPedido(Set<Long> idPedido) {
+		this.idPedido = idPedido;
+	}
+
 	
 }

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.chocode.ifood.dto.PedidoDTO;
+import br.com.chocode.ifood.model.Pedido;
 import br.com.chocode.ifood.services.IPedidoService;
 
 @RestController
@@ -23,14 +23,20 @@ public class PedidoController {
 	private IPedidoService service;
 
 	@GetMapping("/pedidos")
-	public ResponseEntity<List<PedidoDTO>> findAll() {
+	public ResponseEntity<List<Pedido>> findAll() {
 		return ResponseEntity.status(200).body(service.findAll());
 	}
-
-	@PutMapping("/pedido/{id}/status/")
-	public ResponseEntity<PedidoDTO> updateStatus(@PathVariable Long id, @RequestBody String status) {
-		return ResponseEntity.ok(service.updateStatus(id, status));
+	
+	
+	@GetMapping("/{id}")
+	public ResponseEntity<Pedido> findById(@PathVariable Long id) {
+		return ResponseEntity.status(200).body(service.findById(id));
 	}
+
+//	@PutMapping("/pedido/{id}/status/")
+//	public ResponseEntity<Pedido> updateStatus(@PathVariable Long id, @RequestBody String status) {
+//		return ResponseEntity.ok(service.updateStatus(id, status));
+//	}
 	
 	
 	@PostMapping("/pedido/{id_pedido}/entregador/{id_entregador}")

@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 
 import antlr.Token;
 import br.com.chocode.ifood.dao.EntregadorDAO;
-import br.com.chocode.ifood.dto.EntregadorDTO;
+import br.com.chocode.ifood.model.Entregador;
 
 @Component
 public class EntregadorServiceImpl implements IEntregadorService{
@@ -13,8 +13,12 @@ public class EntregadorServiceImpl implements IEntregadorService{
 	@Autowired
 	private EntregadorDAO dao;
 	
-	public Token gerarToken(EntregadorDTO entregadorDTO) {
+	public Token gerarToken(Entregador entregador) {
 		return null;
 		
+	}
+	
+	public Entregador findById(Long id) {
+		return dao.findById(id).get();
 	}
 }

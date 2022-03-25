@@ -1,5 +1,8 @@
 package br.com.chocode.ifood.services;
 
-public interface IEntregadorService {
+import br.com.chocode.ifood.model.Entregador;
 
+public interface IEntregadorService {
+	
+	public Entregador findById(Long id);
 }

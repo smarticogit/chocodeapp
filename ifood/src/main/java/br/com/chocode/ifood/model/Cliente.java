@@ -12,9 +12,6 @@ import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import br.com.chocode.ifood.dto.ClienteDTO;
-import br.com.chocode.ifood.dto.PedidoDTO;
-
 @Entity
 public class Cliente {
 
@@ -29,29 +26,18 @@ public class Cliente {
 
 	@OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
 	@JsonIgnore
-	private Set<Pedido> pedidos = new HashSet<>();
+	private Set<Long> idPedidos = new HashSet<>();
 	
 	public Cliente() {}
 
-	public Cliente(Long id, String nome, String endereco, String latitude, String longitude) {
+	public Cliente(Long id, String nome, String endereco, String latitude, String longitude, Set<Long> idPedidos) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.endereco = endereco;
 		this.latitude = latitude;
 		this.longitude = longitude;
-	}
-	
-	public Cliente(ClienteDTO clienteDTO) {
-		super();
-		this.id = clienteDTO.getId();
-		this.nome = clienteDTO.getNome() ;
-		this.endereco = clienteDTO.getEndereco();
-		this.latitude = clienteDTO.getLatitude();
-		this.longitude = clienteDTO.getLongitude();
-		for (PedidoDTO pedidoDTO : clienteDTO.getPedido()) {
-		this.pedidos.add(new Pedido(pedidoDTO));
-		}
+		this.idPedidos = idPedidos;
 	}
 
 	public Long getId() {
@@ -94,8 +80,13 @@ public class Cliente {
 		this.longitude = longitude;
 	}
 
-	public Set<Pedido> getPedidos() {
-		return pedidos;
+	public Set<Long> getIdPedidos() {
+		return idPedidos;
 	}
 
+	public void setIdPedidos(Set<Long> idPedidos) {
+		this.idPedidos = idPedidos;
+	}
+
+	
 }
