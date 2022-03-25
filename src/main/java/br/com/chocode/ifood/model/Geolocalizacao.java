@@ -27,11 +27,14 @@ public class Geolocalizacao {
 	@JoinColumn(name = "pedido_id")
 	private Pedido pedido;
 
-	public Geolocalizacao() {
-	}
+	public Geolocalizacao() {}
 	
+<<<<<<< HEAD:src/main/java/br/com/chocode/ifood/model/Geolocalizacao.java
 
 	public Geolocalizacao(Long id, String latitude, String longitude, LocalDateTime data, Entregador entregadorG,
+=======
+	public Geolocalizacao(Long id, String latitude, String longitude, LocalDateTime data, Entregador entregador,
+>>>>>>> main:ifood/src/main/java/br/com/chocode/ifood/model/Geolocalizacao.java
 			Pedido pedido) {
 		super();
 		this.id = id;
@@ -82,25 +85,24 @@ public class Geolocalizacao {
 		this.data = data;
 	}
 
-
 	public Entregador getEntregadorG() {
 		return entregadorG;
 	}
-
 
 	public void setEntregadorG(Entregador entregadorG) {
 		this.entregadorG = entregadorG;
 	}
 
-
 	public Pedido getPedido() {
 		return pedido;
 	}
-
 
 	public void setPedido(Pedido pedido) {
 		this.pedido = pedido;
 	}
 
+<<<<<<< HEAD:src/main/java/br/com/chocode/ifood/model/Geolocalizacao.java
 
+=======
+>>>>>>> main:ifood/src/main/java/br/com/chocode/ifood/model/Geolocalizacao.java
 }

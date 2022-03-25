@@ -20,7 +20,12 @@ public class Entregador {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nome;
+<<<<<<< HEAD:src/main/java/br/com/chocode/ifood/model/Entregador.java
 	private String email;
+=======
+	@Column(unique = true)
+	private String email; 
+>>>>>>> main:ifood/src/main/java/br/com/chocode/ifood/model/Entregador.java
 	private String senha;
 	
 	@Column(name = "url_image")
@@ -32,6 +37,7 @@ public class Entregador {
 	
 	@OneToMany(mappedBy = "entregadorP", cascade = CascadeType.ALL)
 	@JsonIgnore
+<<<<<<< HEAD:src/main/java/br/com/chocode/ifood/model/Entregador.java
 	private Set<Long> idPedido = new HashSet<>();
 	
 	
@@ -39,6 +45,13 @@ public class Entregador {
 	
 	public Entregador(Long id, String nome, String email, String senha, String urlImage, Set<Long> idGeo,
 			Set<Long> idPedido) {
+=======
+	private Set<Pedido> pedido = new HashSet<>();
+	
+	public Entregador() {}
+	
+	public Entregador(EntregadorDTO entregador) {
+>>>>>>> main:ifood/src/main/java/br/com/chocode/ifood/model/Entregador.java
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -81,6 +94,7 @@ public class Entregador {
 		this.senha = senha;
 	}
 
+<<<<<<< HEAD:src/main/java/br/com/chocode/ifood/model/Entregador.java
 	public String getUrlImage() {
 		return urlImage;
 	}
@@ -105,5 +119,26 @@ public class Entregador {
 		this.idPedido = idPedido;
 	}
 
+=======
+	public Set<Geolocalizacao> getGeo() {
+		return geo;
+	}
+
+	public Set<Pedido> getPedido() {
+		return pedido;
+	}
+
+	public void setPedido(Set<Pedido> pedido) {
+		this.pedido = pedido;
+	}
+
+	public String getUrlImage() {
+		return urlImage;
+	}
+
+	public void setUrlImage(String urlImage) {
+		this.urlImage = urlImage;
+	}
+>>>>>>> main:ifood/src/main/java/br/com/chocode/ifood/model/Entregador.java
 	
 }

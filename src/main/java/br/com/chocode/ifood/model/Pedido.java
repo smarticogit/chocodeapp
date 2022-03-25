@@ -25,7 +25,6 @@ public class Pedido {
 
 	@Column(name = "nome_restaurante")
 	private String nomeRestaurante;
-
 	private String produto;
 	private String status;
 
@@ -104,8 +103,12 @@ public class Pedido {
 		this.idGeo = idGeo;
 	}
 
+<<<<<<< HEAD:src/main/java/br/com/chocode/ifood/model/Pedido.java
 
 	public Entregador getEntregadorP() {
+=======
+	public Entregador getEntregador() {
+>>>>>>> main:ifood/src/main/java/br/com/chocode/ifood/model/Pedido.java
 		return entregadorP;
 	}
 
@@ -124,7 +127,10 @@ public class Pedido {
 		this.cliente = cliente;
 	}
 
+<<<<<<< HEAD:src/main/java/br/com/chocode/ifood/model/Pedido.java
 	
 	
 
+=======
+>>>>>>> main:ifood/src/main/java/br/com/chocode/ifood/model/Pedido.java
 }
