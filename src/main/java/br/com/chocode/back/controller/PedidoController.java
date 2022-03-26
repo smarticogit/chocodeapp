@@ -28,6 +28,11 @@ public class PedidoController {
 		return ResponseEntity.status(201).body(service.saveEntregador(idPedido, idEntregador));
 	}
 
+	@PutMapping("/{idPedido}/status")
+	public ResponseEntity<Pedido> saveStatus(@PathVariable Long idPedido, @RequestBody String status) {
+		return ResponseEntity.status(201).body(service.saveStatus(idPedido, status));
+	}
+
 	@GetMapping("/listar")
 	public ResponseEntity<List<Pedido>> findAll() {
 		return ResponseEntity.status(200).body(service.findAll());
@@ -37,15 +42,6 @@ public class PedidoController {
 	public ResponseEntity<Pedido> findById(@PathVariable Long id) {
 		return ResponseEntity.status(200).body(service.findById(id));
 	}
-	@GetMapping("/naosei")
-	@PostMapping("/{id_pedido}/entregador/{id_entregador}")
-	public String texto3() {
-		return "ok";
-	}
 
-	@PutMapping("/{id}/status")
-	public String texto4() {
-		return null;
-	}
 
 }

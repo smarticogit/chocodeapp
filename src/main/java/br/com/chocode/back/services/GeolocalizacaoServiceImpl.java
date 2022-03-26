@@ -26,8 +26,11 @@ public class GeolocalizacaoServiceImpl implements IGeolocalizacaoService {
 	public Geolocalizacao save(GeolocalizacaoDTO geolocalizacaoDTO) {
 		Geolocalizacao geolocalizacao = new Geolocalizacao(geolocalizacaoDTO);
 		LocalDateTime now = LocalDateTime.now();
-		geolocalizacao.setEntregador(entregadorService.findById(geolocalizacaoDTO.getIdEntregador()));
+		geolocalizacao.setData(now);
 		geolocalizacao.setPedido(pedidoService.findById(geolocalizacaoDTO.getIdPedido()));
+		if (geolocalizacao.getPedido().getEntregador().getId() != geolocalizacaoDTO.getIdEntregador())
+			return null;
+		geolocalizacao.setEntregador(entregadorService.findById(geolocalizacaoDTO.getIdEntregador()));
 		return dao.saveAndFlush(geolocalizacao);
 	}
 

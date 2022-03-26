@@ -11,6 +11,8 @@ public interface IPedidoService {
 
 	public Pedido saveEntregador(Long idPedido, Long idEntregador);
 
+	public Pedido saveStatus(Long idPedido, String status);
+
 	public List<Pedido> findAll();
 
 	public Pedido findById(Long id);

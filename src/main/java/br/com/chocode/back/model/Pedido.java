@@ -31,11 +31,12 @@ public class Pedido {
 	public Pedido() {
 	}
 
-	public Pedido(PedidoDTO pedidoDTO) {
+	public Pedido(PedidoDTO pedidoDTO, Cliente cliente) {
 		this.id = pedidoDTO.getId();
 		this.nomeRestaurante = pedidoDTO.getNomeRestaurante();
 		this.produto = pedidoDTO.getProduto();
 		this.status = pedidoDTO.getStatus();
+		this.cliente = cliente;
 	}
 
 	public Pedido(Long id, String nomeRestaurante, String produto, String status, Entregador entregador,

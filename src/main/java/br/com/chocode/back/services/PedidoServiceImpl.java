@@ -2,6 +2,7 @@ package br.com.chocode.back.services;
 
 import br.com.chocode.back.DTO.PedidoDTO;
 import br.com.chocode.back.dao.PedidoDAO;
+import br.com.chocode.back.model.Geolocalizacao;
 import br.com.chocode.back.model.Pedido;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -20,9 +21,12 @@ public class PedidoServiceImpl implements IPedidoService {
 	@Autowired
 	private ClienteServiceImpl clienteService;
 
+	@Autowired
+	private GeolocalizacaoServiceImpl geoService;
+
 	public Pedido save(PedidoDTO pedidoDTO) {
-		Pedido pedido = new Pedido(pedidoDTO);
-		pedido.setCliente(clienteService.findById(pedidoDTO.getIdEntregador()));
+
+		Pedido pedido = new Pedido(pedidoDTO, clienteService.findById(pedidoDTO.getIdCliente()));
 		return dao.saveAndFlush(pedido);
 	}
 
@@ -32,8 +36,19 @@ public class PedidoServiceImpl implements IPedidoService {
 		return dao.saveAndFlush(pedido);
 	}
 
+	public Pedido saveStatus(Long idPedido, String status) {
+		Pedido pedido = findById(idPedido);
+		pedido.setStatus(status);
+		return dao.saveAndFlush(pedido);
+	}
+
 	public List<Pedido> findAll() {
 		List<Pedido> listaPedidos = dao.findAll();
+		return listaPedidos;
+	}
+
+	public List<Geolocalizacao> findAllGeo(Long idPedido) {
+		List<Geolocalizacao> listaGeo = geoService.findAll();
 		return listaPedidos;
 	}
 

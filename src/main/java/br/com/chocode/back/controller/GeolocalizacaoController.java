@@ -19,7 +19,11 @@ public class GeolocalizacaoController {
 
 	@PostMapping
 	public ResponseEntity<Geolocalizacao> save(@RequestBody GeolocalizacaoDTO geolocalizacaoDTO) {
-		return ResponseEntity.status(201).body(service.save(geolocalizacaoDTO));
+		Geolocalizacao geolocalizacao = service.save(geolocalizacaoDTO);
+		if (geolocalizacao == null) {
+			return ResponseEntity.status(404).body(geolocalizacao);
+		}
+		return ResponseEntity.status(201).body(geolocalizacao);
 	}
 
 	@GetMapping("/listar")

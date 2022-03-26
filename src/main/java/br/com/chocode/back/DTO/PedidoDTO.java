@@ -17,14 +17,6 @@ public class PedidoDTO {
     public PedidoDTO() {
     }
 
-    public PedidoDTO(Long id, String nomeRestaurante, String produto, String status, Long idEntregador, Long idCliente) {
-        this.id = id;
-        this.nomeRestaurante = nomeRestaurante;
-        this.produto = produto;
-        this.status = status;
-        this.idEntregador = idEntregador;
-        this.idCliente = idCliente;
-    }
 
     public Long getId() {
         return id;
