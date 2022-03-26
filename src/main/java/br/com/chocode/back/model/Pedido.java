@@ -1,5 +1,7 @@
 package br.com.chocode.back.model;
 
+import br.com.chocode.back.DTO.PedidoDTO;
+
 import javax.persistence.*;
 
 @Entity
@@ -20,7 +22,7 @@ public class Pedido {
 
 	@ManyToOne
 	@JoinColumn(name = "entregador_id")
-	private Entregador entregadorP;
+	private Entregador entregador;
 
 	@ManyToOne
 	@JoinColumn(name = "cliente_id")
@@ -29,13 +31,20 @@ public class Pedido {
 	public Pedido() {
 	}
 
-	public Pedido(Long id, String nomeRestaurante, String produto, String status, Entregador entregadorP,
+	public Pedido(PedidoDTO pedidoDTO) {
+		this.id = pedidoDTO.getId();
+		this.nomeRestaurante = pedidoDTO.getNomeRestaurante();
+		this.produto = pedidoDTO.getProduto();
+		this.status = pedidoDTO.getStatus();
+	}
+
+	public Pedido(Long id, String nomeRestaurante, String produto, String status, Entregador entregador,
 			Cliente cliente) {
 		this.id = id;
 		this.nomeRestaurante = nomeRestaurante;
 		this.produto = produto;
 		this.status = status;
-		this.entregadorP = entregadorP;
+		this.entregador = entregador;
 		this.cliente = cliente;
 	}
 
@@ -71,12 +80,12 @@ public class Pedido {
 		this.status = status;
 	}
 
-	public Entregador getEntregadorP() {
-		return entregadorP;
+	public Entregador getEntregador() {
+		return entregador;
 	}
 
-	public void setEntregadorP(Entregador entregadorP) {
-		this.entregadorP = entregadorP;
+	public void setEntregador(Entregador entregador) {
+		this.entregador = entregador;
 	}
 
 	public Cliente getCliente() {

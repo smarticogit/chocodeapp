@@ -1,5 +1,7 @@
 package br.com.chocode.back.model;
 
+import br.com.chocode.back.DTO.GeolocalizacaoDTO;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
@@ -28,6 +30,14 @@ public class Geolocalizacao {
 	private Pedido pedido;
 
 	public Geolocalizacao() {
+	}
+
+	public Geolocalizacao(GeolocalizacaoDTO geolocalizacaoDTO) {
+		super();
+		this.id = geolocalizacaoDTO.getId();
+		this.latitude = geolocalizacaoDTO.getLatitude();
+		this.longitude = geolocalizacaoDTO.getLongitude();
+		this.data = geolocalizacaoDTO.getData();
 	}
 
 	public Geolocalizacao(Long id, String latitude, String longitude, LocalDateTime data, Entregador entregador,

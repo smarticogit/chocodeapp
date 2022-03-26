@@ -1,15 +1,12 @@
 package br.com.chocode.back.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
 import br.com.chocode.back.model.Entregador;
 import br.com.chocode.back.services.IEntregadorService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @CrossOrigin("*")
@@ -18,6 +15,17 @@ public class EntregadorController {
 	
 	@Autowired
 	private IEntregadorService service;
+
+	@PostMapping
+	public ResponseEntity<Entregador> save(@RequestBody Entregador entregador) {
+		return ResponseEntity.status(201).body(service.save(entregador));
+	}
+
+	@GetMapping("/listar")
+	public ResponseEntity<List<Entregador>> findAll() {
+		return ResponseEntity.status(200).body(service.findAll());
+	}
+
 
 	@GetMapping("/{id}")
 	public ResponseEntity<Entregador> findById(@PathVariable Long id) {
