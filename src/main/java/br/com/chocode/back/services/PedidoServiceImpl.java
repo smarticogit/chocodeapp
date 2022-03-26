@@ -12,7 +12,7 @@ public class PedidoServiceImpl implements IPedidoService {
 
 	@Autowired
 	private PedidoDAO dao;
-	
+
 	public Pedido save(Pedido pedido) {
 		return dao.saveAndFlush(pedido);
 	}
@@ -25,8 +25,7 @@ public class PedidoServiceImpl implements IPedidoService {
 	public Pedido findById(Long id) {
 		return dao.findById(id).get();
 	}
-	
-	
+
 //	Update de pedido, antes dele ser atribuido a um entregador.
 //	public Pedido update(Long id, Pedido pedido) {
 //		Pedido pedidoBanco = findById(id);
@@ -56,6 +55,5 @@ public class PedidoServiceImpl implements IPedidoService {
 //	public void delete(Long id) {
 //		dao.deleteById(id);
 //	}
-
 
 }

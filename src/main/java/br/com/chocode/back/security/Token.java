@@ -1,7 +1,7 @@
 package br.com.chocode.back.security;
 
 public class Token {
-	
+
 	private String token;
 
 	public Token(String token) {
@@ -20,6 +20,5 @@ public class Token {
 	public void setToken(String token) {
 		this.token = token;
 	}
-	
 
 }

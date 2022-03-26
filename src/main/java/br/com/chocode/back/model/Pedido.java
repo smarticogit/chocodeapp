@@ -29,7 +29,8 @@ public class Pedido {
 	public Pedido() {
 	}
 
-	public Pedido(Long id, String nomeRestaurante, String produto, String status, Entregador entregadorP, Cliente cliente) {
+	public Pedido(Long id, String nomeRestaurante, String produto, String status, Entregador entregadorP,
+			Cliente cliente) {
 		this.id = id;
 		this.nomeRestaurante = nomeRestaurante;
 		this.produto = produto;

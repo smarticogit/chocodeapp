@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 public class Entregador {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -13,16 +13,16 @@ public class Entregador {
 	private String nome;
 
 	@Column(name = "email", nullable = false, unique = true)
-	private String email; 
+	private String email;
 
 	@Column(name = "senha", nullable = false)
 	private String senha;
-	
+
 	@Column(name = "url_image")
 	private String urlImage;
 
-	
-	public Entregador() {}
+	public Entregador() {
+	}
 
 	public Entregador(Long id, String nome, String email, String senha, String urlImage) {
 		this.id = id;
