@@ -21,9 +21,6 @@ public class PedidoServiceImpl implements IPedidoService {
 	@Autowired
 	private ClienteServiceImpl clienteService;
 
-	@Autowired
-	private GeolocalizacaoServiceImpl geoService;
-
 	public Pedido save(PedidoDTO pedidoDTO) {
 
 		Pedido pedido = new Pedido(pedidoDTO, clienteService.findById(pedidoDTO.getIdCliente()));
@@ -47,10 +44,6 @@ public class PedidoServiceImpl implements IPedidoService {
 		return listaPedidos;
 	}
 
-	public List<Geolocalizacao> findAllGeo(Long idPedido) {
-		List<Geolocalizacao> listaGeo = geoService.findAll();
-		return listaPedidos;
-	}
 
 	public Pedido findById(Long id) {
 		return dao.findById(id).get();

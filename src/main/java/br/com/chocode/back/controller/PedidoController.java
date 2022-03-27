@@ -1,6 +1,7 @@
 package br.com.chocode.back.controller;
 
 import br.com.chocode.back.DTO.PedidoDTO;
+import br.com.chocode.back.model.Geolocalizacao;
 import br.com.chocode.back.model.Pedido;
 import br.com.chocode.back.services.IPedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ public class PedidoController {
 
 	@Autowired
 	private IPedidoService service;
+
 
 	@PostMapping
 	public ResponseEntity<Pedido> save(@RequestBody PedidoDTO pedidoDTO) {
@@ -42,6 +44,8 @@ public class PedidoController {
 	public ResponseEntity<Pedido> findById(@PathVariable Long id) {
 		return ResponseEntity.status(200).body(service.findById(id));
 	}
+
+
 
 
 }

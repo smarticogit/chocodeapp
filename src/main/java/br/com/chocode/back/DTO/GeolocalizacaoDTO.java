@@ -1,5 +1,7 @@
 package br.com.chocode.back.DTO;
 
+import br.com.chocode.back.model.Geolocalizacao;
+
 import java.time.LocalDateTime;
 
 public class GeolocalizacaoDTO {
@@ -26,6 +28,16 @@ public class GeolocalizacaoDTO {
         this.idEntregador = idEntregador;
         this.idPedido = idPedido;
     }
+
+    public GeolocalizacaoDTO(Geolocalizacao geolocalizacao) {
+        this.id = geolocalizacao.getId();
+        this.latitude = geolocalizacao.getLatitude();
+        this.longitude = geolocalizacao.getLongitude();
+        this.data = geolocalizacao.getData();
+        this.idEntregador = geolocalizacao.getEntregador().getId();
+        this.idPedido = geolocalizacao.getPedido().getId();
+    }
+
 
     public Long getId() {
         return id;

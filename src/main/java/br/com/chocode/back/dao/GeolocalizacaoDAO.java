@@ -6,5 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface GeolocalizacaoDAO extends JpaRepository<Geolocalizacao, Long> {
-    List<Geolocalizacao> findAllByPedido(Long id);
+    List<Geolocalizacao> findByPedidoId(Long pedidoId);
 }

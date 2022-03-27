@@ -10,6 +10,8 @@ public interface IGeolocalizacaoService {
 
     public List<Geolocalizacao> findAll();
 
+    public List<GeolocalizacaoDTO> findByPedidoId(Long id);
+
     public Geolocalizacao findById(Long id);
 
 }

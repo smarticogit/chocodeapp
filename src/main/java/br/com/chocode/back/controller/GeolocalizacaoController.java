@@ -36,14 +36,9 @@ public class GeolocalizacaoController {
 		return ResponseEntity.status(200).body(service.findById(id));
 	}
 
-	@GetMapping("/pedido/{id}/geolocalizacao")
-	public String texto () {
-		return "ok";
-	}
-	
-	@PostMapping("/pedido/{id}/geolocalizacao")
-	public String texto2 () {
-		return "ok";
+	@GetMapping("/pedido/{id}")
+	public ResponseEntity<List<GeolocalizacaoDTO>> findAllGeo(@PathVariable Long id) {
+		return ResponseEntity.status(200).body(service.findByPedidoId(id));
 	}
 
 }
