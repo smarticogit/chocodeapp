@@ -21,7 +21,8 @@ public class Cliente {
 	@Column(name = "longitude", nullable = false)
 	private String longitude;
 
-	public Cliente() {}
+	public Cliente() {
+	}
 
 	public Cliente(Long id, String nome, String endereco, String latitude, String longitude) {
 		this.id = id;
