@@ -1,12 +1,13 @@
 package br.com.chocode.back.services;
 
 import br.com.chocode.back.DTO.PedidoDTO;
+import br.com.chocode.back.DTO.StatusDTO;
 import br.com.chocode.back.dao.PedidoDAO;
-import br.com.chocode.back.model.Geolocalizacao;
 import br.com.chocode.back.model.Pedido;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -33,15 +34,25 @@ public class PedidoServiceImpl implements IPedidoService {
 		return dao.saveAndFlush(pedido);
 	}
 
-	public Pedido saveStatus(Long idPedido, String status) {
+	public Pedido saveStatus(Long idPedido, StatusDTO status) {
 		Pedido pedido = findById(idPedido);
-		pedido.setStatus(status);
+		pedido.setStatus(status.getStatus());
 		return dao.saveAndFlush(pedido);
 	}
 
 	public List<Pedido> findAll() {
 		List<Pedido> listaPedidos = dao.findAll();
 		return listaPedidos;
+	}
+
+	public List<Pedido> findAllAguardando() {
+		List<Pedido> listaPedidos = dao.findAll();
+		List<Pedido> listaPedidosAguardando = new ArrayList<>();
+		for (Pedido pedido : listaPedidos){
+			if (pedido.getEntregador() == null && pedido.getCliente() != null)
+				listaPedidosAguardando.add(pedido);
+		}
+		return listaPedidosAguardando;
 	}
 
 
