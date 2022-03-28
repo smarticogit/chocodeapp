@@ -5,4 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface EntregadorDAO extends JpaRepository<Entregador, Long> {
 
+	public Entregador findByEmail(String email);
 }
