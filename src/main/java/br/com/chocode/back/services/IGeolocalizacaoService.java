@@ -6,9 +6,9 @@ import br.com.chocode.back.model.Geolocalizacao;
 import java.util.List;
 
 public interface IGeolocalizacaoService {
-    public Geolocalizacao save(GeolocalizacaoDTO geolocalizacaoDTO);
+    public GeolocalizacaoDTO save(GeolocalizacaoDTO geolocalizacaoDTO);
 
-    public List<Geolocalizacao> findAll();
+    public List<GeolocalizacaoDTO> findAll();
 
     public List<GeolocalizacaoDTO> findByPedidoId(Long id);
 

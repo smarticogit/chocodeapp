@@ -31,6 +31,24 @@ public class PedidoServiceImpl implements IPedidoService {
 	public Pedido saveEntregador(Long idPedido, Long idEntregador) {
 		Pedido pedido = findById(idPedido);
 		pedido.setEntregador(entregadorService.findById(idEntregador));
+		pedido.setStatus("A caminho.");
+		return dao.saveAndFlush(pedido);
+	}
+
+	public Pedido statusCancelado(Long idPedido, Long idEntregador) {
+		Pedido pedido = findById(idPedido);
+		if (pedido == null || pedido.getEntregador() == null || !pedido.getEntregador().getId().equals(idEntregador))
+			return null;
+		pedido.setEntregador(null);
+		pedido.setStatus("Aguardando entregador.");
+		return dao.saveAndFlush(pedido);
+	}
+
+	public Pedido statusEntregue(Long idPedido, Long idEntregador) {
+		Pedido pedido = findById(idPedido);
+		if (pedido == null || pedido.getEntregador() == null || !pedido.getEntregador().getId().equals(idEntregador))
+			return null;
+		pedido.setStatus("Pedido entregue.");
 		return dao.saveAndFlush(pedido);
 	}
 
@@ -45,19 +63,20 @@ public class PedidoServiceImpl implements IPedidoService {
 		return listaPedidos;
 	}
 
-	public List<Pedido> findAllAguardando() {
-		List<Pedido> listaPedidos = dao.findAll();
-		List<Pedido> listaPedidosAguardando = new ArrayList<>();
+	public List<PedidoDTO> findAllAguardando() {
+		List<Pedido> listaPedidos = dao.findByEntregadorNull();
+		List<PedidoDTO> listaPedidosDTO = new ArrayList<>();
 		for (Pedido pedido : listaPedidos){
-			if (pedido.getEntregador() == null && pedido.getCliente() != null)
-				listaPedidosAguardando.add(pedido);
+			if ( pedido.getCliente() != null)
+				listaPedidosDTO.add(new PedidoDTO(pedido));
 		}
-		return listaPedidosAguardando;
+		return listaPedidosDTO;
 	}
 
 
 	public Pedido findById(Long id) {
-		return dao.findById(id).get();
+		Pedido pedido = dao.findById(id).get();
+		return pedido;
 	}
 
 }

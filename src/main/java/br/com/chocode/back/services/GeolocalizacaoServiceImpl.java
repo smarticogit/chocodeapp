@@ -24,21 +24,25 @@ public class GeolocalizacaoServiceImpl implements IGeolocalizacaoService {
 
 
 	@Override
-	public Geolocalizacao save(GeolocalizacaoDTO geolocalizacaoDTO) {
+	public GeolocalizacaoDTO save(GeolocalizacaoDTO geolocalizacaoDTO) {
 		Geolocalizacao geolocalizacao = new Geolocalizacao(geolocalizacaoDTO);
 		LocalDateTime now = LocalDateTime.now();
 		geolocalizacao.setData(now);
 		geolocalizacao.setPedido(pedidoService.findById(geolocalizacaoDTO.getIdPedido()));
-		if (geolocalizacao.getPedido().getEntregador().getId() != geolocalizacaoDTO.getIdEntregador())
+		if (geolocalizacao == null || geolocalizacao.getPedido().getEntregador() == null || !geolocalizacao.getPedido().getEntregador().getId().equals(geolocalizacaoDTO.getIdEntregador()))
 			return null;
 		geolocalizacao.setEntregador(entregadorService.findById(geolocalizacaoDTO.getIdEntregador()));
-		return dao.saveAndFlush(geolocalizacao);
+		GeolocalizacaoDTO geolocalizacaoDTO1 = new GeolocalizacaoDTO(dao.saveAndFlush(geolocalizacao));
+		return geolocalizacaoDTO1;
 	}
 
 	@Override
-	public List<Geolocalizacao> findAll() {
+	public List<GeolocalizacaoDTO> findAll() {
 		List<Geolocalizacao> listaGeos = dao.findAll();
-		return listaGeos;
+		List<GeolocalizacaoDTO> listaGeosDTO = new ArrayList<>();
+		for (Geolocalizacao geolocalizacao : listaGeos)
+			listaGeosDTO.add(new GeolocalizacaoDTO(geolocalizacao));
+		return listaGeosDTO;
 	}
 
 	@Override

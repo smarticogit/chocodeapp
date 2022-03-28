@@ -30,6 +30,22 @@ public class PedidoController {
 		return ResponseEntity.status(201).body(service.saveEntregador(idPedido, idEntregador));
 	}
 
+	@PutMapping("/{idPedido}/entregador/{idEntregador}/cancelado")
+	public ResponseEntity<Pedido> statusCancelado(@PathVariable Long idPedido, @PathVariable Long idEntregador) {
+		Pedido pedido = service.statusCancelado(idPedido, idEntregador);
+		if (pedido == null)
+			return ResponseEntity.status(404).body(null);
+		return ResponseEntity.status(201).body(pedido);
+	}
+
+	@PutMapping("/{idPedido}/entregador/{idEntregador}/entregue")
+	public ResponseEntity<Pedido> statusEngregue(@PathVariable Long idPedido, @PathVariable Long idEntregador) {
+		Pedido pedido = service.statusEntregue(idPedido, idEntregador);
+		if (pedido == null)
+			return ResponseEntity.status(404).body(null);
+		return ResponseEntity.status(201).body(pedido);
+	}
+
 	@PutMapping("/{idPedido}/status")
 	public ResponseEntity<Pedido> saveStatus(@PathVariable Long idPedido, @RequestBody StatusDTO status) {
 		return ResponseEntity.status(201).body(service.saveStatus(idPedido, status));
@@ -41,7 +57,7 @@ public class PedidoController {
 	}
 
 	@GetMapping("/aguardando")
-	public ResponseEntity<List<Pedido>> findAllAguardando() {
+	public ResponseEntity<List<PedidoDTO>> findAllAguardando() {
 		return ResponseEntity.status(200).body(service.findAllAguardando());
 	}
 

@@ -18,16 +18,16 @@ public class GeolocalizacaoController {
 	private IGeolocalizacaoService service;
 
 	@PostMapping
-	public ResponseEntity<Geolocalizacao> save(@RequestBody GeolocalizacaoDTO geolocalizacaoDTO) {
-		Geolocalizacao geolocalizacao = service.save(geolocalizacaoDTO);
+	public ResponseEntity<GeolocalizacaoDTO> save(@RequestBody GeolocalizacaoDTO geolocalizacaoDTO) {
+		GeolocalizacaoDTO geolocalizacao = service.save(geolocalizacaoDTO);
 		if (geolocalizacao == null) {
-			return ResponseEntity.status(404).body(geolocalizacao);
+			return ResponseEntity.status(404).body(null);
 		}
 		return ResponseEntity.status(201).body(geolocalizacao);
 	}
 
 	@GetMapping("/listar")
-	public ResponseEntity<List<Geolocalizacao>> findAll() {
+	public ResponseEntity<List<GeolocalizacaoDTO>> findAll() {
 		return ResponseEntity.status(200).body(service.findAll());
 	}
 
