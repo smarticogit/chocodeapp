@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 import br.com.chocode.back.dao.EntregadorDAO;
 import br.com.chocode.back.model.Entregador;
 import br.com.chocode.back.security.Token;
+import br.com.chocode.back.security.TokenUtil;
 
 import java.util.List;
 
@@ -14,7 +15,25 @@ public class EntregadorServiceImpl implements IEntregadorService {
 	@Autowired
 	private EntregadorDAO dao;
 
-	public Token gerarToken(Entregador entregador) {
+	@Override
+	public Token gerarTokenDeUsuarioLogado(Entregador dadosLogin) {
+		Entregador user = dao.findByEmail(dadosLogin.getEmail());
+		try {
+
+			if (user != null) { 
+				String senhaLogin = dadosLogin.getSenha();
+
+				System.out.println("Senha login = " + senhaLogin);
+				System.out.println("Senha user  = " + user.getSenha());
+
+				if (senhaLogin.equals(user.getSenha())) {
+					return new Token(TokenUtil.createToken(user));
+				}
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+
 		return null;
 	}
 
