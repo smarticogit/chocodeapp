@@ -21,6 +21,13 @@ public class ChocodeSecurityConfiguration extends WebSecurityConfigurerAdapter{
 					  .and()
 					  .authorizeRequests() 
 					  .antMatchers(HttpMethod.POST, "/entregador/login").permitAll()
+					  .antMatchers(HttpMethod.POST, "/entregador/*").permitAll()
+					  .antMatchers(HttpMethod.GET, "/entregador/*").permitAll()
+					  .antMatchers(HttpMethod.POST, "/pedido/*").permitAll()
+  					  .antMatchers(HttpMethod.GET "/pedido/*").permitAll()
+					  .antMatchers(HttpMethod.PUT "/pedido/*").permitAll()
+	                  .antMatchers(HttpMethod.GET, "/geolocalizacao/*").permitAll()
+					  .antMatchers(HttpMethod.POST, "/geolocalizacao/*").permitAll()
 					  .anyRequest().authenticated().and().cors();
 		
 		httpSec.addFilterBefore(new ChocodeFilter(), UsernamePasswordAuthenticationFilter.class);
