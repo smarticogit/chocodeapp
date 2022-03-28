@@ -27,7 +27,7 @@ public class EntregadorServiceImpl implements IEntregadorService {
 				System.out.println("Senha user  = " + user.getSenha());
 
 				if (senhaLogin.equals(user.getSenha())) {
-					return new Token(TokenUtil.createToken(user));
+					return new Token(TokenUtil.createToken(user), user.getId());
 				}
 			}
 		} catch (Exception ex) {
