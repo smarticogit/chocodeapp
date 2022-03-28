@@ -1,5 +1,7 @@
 package br.com.chocode.back.DTO;
 
+import br.com.chocode.back.model.Pedido;
+
 public class PedidoDTO {
 
     private Long id;
@@ -17,6 +19,15 @@ public class PedidoDTO {
     public PedidoDTO() {
     }
 
+    public PedidoDTO(Pedido pedido) {
+        this.id = pedido.getId();
+        this.nomeRestaurante = pedido.getNomeRestaurante();
+        this.produto = pedido.getProduto();
+        this.status = pedido.getStatus();
+        if (pedido.getEntregador() != null)
+            this.idEntregador = pedido.getEntregador().getId();
+        this.idCliente = pedido.getCliente().getId();
+    }
 
     public Long getId() {
         return id;

@@ -14,9 +14,13 @@ public interface IPedidoService {
 
 	public Pedido saveStatus(Long idPedido, StatusDTO status);
 
+	public Pedido statusCancelado(Long idPedido, Long idEntregador);
+
+	public Pedido statusEntregue(Long idPedido, Long idEntregador);
+
 	public List<Pedido> findAll();
 
-	public List<Pedido> findAllAguardando();
+	public List<PedidoDTO> findAllAguardando();
 
 	public Pedido findById(Long id);
 
