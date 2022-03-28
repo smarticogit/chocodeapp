@@ -6,6 +6,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -19,9 +20,10 @@ public class ChocodeSecurityConfiguration extends WebSecurityConfigurerAdapter{
 					  .exceptionHandling().authenticationEntryPoint(entryPoint)   
 					  .and()
 					  .authorizeRequests() 
-					  .antMatchers(HttpMethod.POST, "entregador/login").permitAll()
-					  .antMatchers(HttpMethod.GET, "pedido/listar").permitAll()
+					  .antMatchers(HttpMethod.POST, "/entregador/login").permitAll()
 					  .anyRequest().authenticated().and().cors();
+		
+		httpSec.addFilterBefore(new ChocodeFilter(), UsernamePasswordAuthenticationFilter.class);
 		
 	}
 }
