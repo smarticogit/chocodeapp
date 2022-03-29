@@ -22,6 +22,7 @@ public class ChocodeSecurityConfiguration extends WebSecurityConfigurerAdapter{
 					  .authorizeRequests() 
 					  .antMatchers(HttpMethod.POST, "/entregador/login").permitAll()
 					  .antMatchers(HttpMethod.POST, "/entregador/*").permitAll()
+					  .antMatchers(HttpMethod.POST, "/login").permitAll()
 					  .antMatchers(HttpMethod.GET, "/entregador/*").permitAll()
 					  .antMatchers(HttpMethod.POST, "/pedido/*").permitAll()
   					  .antMatchers(HttpMethod.GET, "/pedido/*").permitAll()
