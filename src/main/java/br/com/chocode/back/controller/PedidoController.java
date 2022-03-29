@@ -61,6 +61,11 @@ public class PedidoController {
 		return ResponseEntity.status(200).body(service.findAllAguardando());
 	}
 
+	@GetMapping("/status/{status}")
+	public ResponseEntity<List<PedidoDTO>> findAllStatus(@PathVariable String status) {
+		return ResponseEntity.status(200).body(service.findAllStatus(status));
+	}
+
 	@GetMapping("/{id}")
 	public ResponseEntity<Pedido> findById(@PathVariable Long id) {
 		return ResponseEntity.status(200).body(service.findById(id));

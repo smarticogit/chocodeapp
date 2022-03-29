@@ -22,6 +22,8 @@ public interface IPedidoService {
 
 	public List<PedidoDTO> findAllAguardando();
 
+	public List<PedidoDTO> findAllStatus(String status);
+
 	public Pedido findById(Long id);
 
 }
