@@ -4,9 +4,10 @@ import br.com.chocode.back.DTO.GeolocalizacaoDTO;
 import br.com.chocode.back.dao.GeolocalizacaoDAO;
 import br.com.chocode.back.model.Geolocalizacao;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.util.ClassTypeInformation;
 import org.springframework.stereotype.Component;
-
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,13 +26,20 @@ public class GeolocalizacaoServiceImpl implements IGeolocalizacaoService {
 
 	@Override
 	public GeolocalizacaoDTO save(GeolocalizacaoDTO geolocalizacaoDTO) {
+		List<GeolocalizacaoDTO> geosDoBancoDTO = findByPedidoId(geolocalizacaoDTO.getIdPedido());
+		for (GeolocalizacaoDTO geolocalizacaoDTO1 : geosDoBancoDTO){
+			if (geolocalizacaoDTO.getLatitude().equals(geolocalizacaoDTO1.getLatitude())
+					&& geolocalizacaoDTO.getLongitude().equals(geolocalizacaoDTO1.getLongitude())){
+				return null;
+			}
+		}
 		Geolocalizacao geolocalizacao = new Geolocalizacao(geolocalizacaoDTO);
-		LocalDateTime now = LocalDateTime.now();
+		LocalDateTime now = LocalDateTime.now(ZoneId.of("America/Sao_Paulo"));
 		geolocalizacao.setData(now);
 		geolocalizacao.setPedido(pedidoService.findById(geolocalizacaoDTO.getIdPedido()));
 		if (geolocalizacao == null || geolocalizacao.getPedido().getEntregador() == null || !geolocalizacao.getPedido().getEntregador().getId().equals(geolocalizacaoDTO.getIdEntregador()))
 			return null;
-		geolocalizacao.setEntregador(entregadorService.findById(geolocalizacaoDTO.getIdEntregador()));
+		geolocalizacao.setEntregador(geolocalizacao.getPedido().getEntregador());
 		GeolocalizacaoDTO geolocalizacaoDTO1 = new GeolocalizacaoDTO(dao.saveAndFlush(geolocalizacao));
 		return geolocalizacaoDTO1;
 	}

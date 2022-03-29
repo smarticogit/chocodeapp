@@ -5,4 +5,6 @@ import java.util.List;
 
 public interface GeolocalizacaoDAO extends JpaRepository<Geolocalizacao, Long> {
     List<Geolocalizacao> findByPedidoId(Long pedidoId);
+    List<Geolocalizacao> findByPedidoIdAndLatitude(Long pedidoId, String latitude);
+
 }
