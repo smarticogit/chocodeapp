@@ -2,7 +2,6 @@ package br.com.chocode.back.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import br.com.chocode.back.dao.EntregadorDAO;
 import br.com.chocode.back.model.Entregador;
 import br.com.chocode.back.security.Token;
@@ -28,7 +27,7 @@ public class EntregadorServiceImpl implements IEntregadorService {
 				System.out.println("Senha user  = " + user.getSenha());
 
 				if (senhaLogin.equals(user.getSenha())) {
-					return new Token(TokenUtil.createToken(user));
+					return new Token(TokenUtil.createToken(user), user.getId());
 				}
 			}
 		} catch (Exception ex) {
