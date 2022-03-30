@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin("*")
-@RequestMapping("/entregador")
+@RequestMapping("/entregadores")
 public class EntregadorController {
 	
 	@Autowired
@@ -22,7 +22,7 @@ public class EntregadorController {
 		return ResponseEntity.status(201).body(service.save(entregador));
 	}
 
-	@GetMapping("/listar")
+	@GetMapping
 	public ResponseEntity<List<Entregador>> findAll() {
 		return ResponseEntity.status(200).body(service.findAll());
 	}
@@ -35,9 +35,10 @@ public class EntregadorController {
 	@PostMapping("/login")
 	public ResponseEntity<Token> realizarLogin(@RequestBody Entregador dadosLogin) {
 		Token token = service.gerarTokenDeUsuarioLogado(dadosLogin);
-		if (token != null) {
-			return ResponseEntity.ok(token);
+		if (token == null) {
+			return ResponseEntity.status(401).body(null);
 		}
-		return ResponseEntity.status(401).build();
+		return ResponseEntity.status(200).body(token);
+
 	}
 }

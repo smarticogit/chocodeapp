@@ -13,34 +13,11 @@ import br.com.chocode.back.security.TokenUtil;
 
 @Component
 public class EntregadorServiceImpl implements IEntregadorService {
-
-	@Autowired
 	private EntregadorDAO dao;
 
-	@Override
-	public Token gerarTokenDeUsuarioLogado(Entregador dadosLogin) {
-		Entregador user = dao.findByEmail(dadosLogin.getEmail());
-		try {
-
-			if (user != null) { 
-				
-				// do ponto que estamos para uma senha criptografada, basta apenas
-				// criptografarmos
-				// a senha recebida e comparar os valores criptografados
-				String senhaLogin = ChocodeCrypto.encrypt(dadosLogin.getSenha());
-
-				System.out.println("Senha login = " + senhaLogin);
-				System.out.println("Senha user  = " + user.getSenha());
-
-				if (senhaLogin.equals(user.getSenha())) {
-					return new Token(TokenUtil.createToken(user), user.getId());
-				}
-			}
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-
-		return null;
+	@Autowired
+	public EntregadorServiceImpl(EntregadorDAO dao) {
+		this.dao = dao;
 	}
 
 	@Override
@@ -50,7 +27,6 @@ public class EntregadorServiceImpl implements IEntregadorService {
 			senhaLogin = ChocodeCrypto.encrypt(entregador.getSenha());
 			entregador.setSenha(senhaLogin);
 		} catch (Exception e) {
-			
 			e.printStackTrace();
 		}
 		return dao.saveAndFlush(entregador);
@@ -64,5 +40,26 @@ public class EntregadorServiceImpl implements IEntregadorService {
 
 	public Entregador findById(Long id) {
 		return dao.findById(id).get();
+	}
+
+	@Override
+	public Token gerarTokenDeUsuarioLogado(Entregador dadosLogin) {
+		Entregador user = dao.findByEmail(dadosLogin.getEmail());
+		try {
+			if (user != null) {
+
+				String senhaLogin = ChocodeCrypto.encrypt(dadosLogin.getSenha());
+
+				System.out.println("Senha login = " + senhaLogin);
+				System.out.println("Senha user  = " + user.getSenha());
+
+				if (senhaLogin.equals(user.getSenha())) {
+					return new Token(TokenUtil.createToken(user), user.getId(), user.getNome(), user.getUrlImage());
+				}
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		return null;
 	}
 }
