@@ -1,12 +1,11 @@
 package br.com.chocode.back.dao;
 
-import br.com.chocode.back.model.Entregador;
-import br.com.chocode.back.model.Geolocalizacao;
 import br.com.chocode.back.model.Pedido;
 import org.springframework.data.jpa.repository.JpaRepository;
-
+import org.springframework.stereotype.Repository;
 import java.util.List;
 
+@Repository
 public interface PedidoDAO extends JpaRepository<Pedido, Long> {
     List<Pedido> findByEntregadorNull();
     List<Pedido> findByStatus(String status);
