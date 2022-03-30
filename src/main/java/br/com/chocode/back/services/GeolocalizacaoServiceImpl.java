@@ -1,5 +1,6 @@
 package br.com.chocode.back.services;
 
+import br.com.chocode.back.DTO.GeolocalizacaoCompDTO;
 import br.com.chocode.back.DTO.GeolocalizacaoDTO;
 import br.com.chocode.back.dao.GeolocalizacaoDAO;
 import br.com.chocode.back.model.Geolocalizacao;
@@ -30,7 +31,7 @@ public class GeolocalizacaoServiceImpl implements IGeolocalizacaoService {
 		for (GeolocalizacaoDTO geolocalizacaoDTO1 : geosDoBancoDTO){
 			if (geolocalizacaoDTO.getLatitude().equals(geolocalizacaoDTO1.getLatitude())
 					&& geolocalizacaoDTO.getLongitude().equals(geolocalizacaoDTO1.getLongitude())){
-				return null;
+				return geolocalizacaoDTO1;
 			}
 		}
 		Geolocalizacao geolocalizacao = new Geolocalizacao(geolocalizacaoDTO);
@@ -66,4 +67,10 @@ public class GeolocalizacaoServiceImpl implements IGeolocalizacaoService {
 	public Geolocalizacao findById(Long id) {
 		return dao.findById(id).get();
 	}
+
+	@Override
+	public void delete(Long id) {
+		dao.deleteById(id);
+	}
+
 }

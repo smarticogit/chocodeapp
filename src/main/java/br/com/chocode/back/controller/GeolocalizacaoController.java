@@ -41,4 +41,10 @@ public class GeolocalizacaoController {
 		return ResponseEntity.status(200).body(service.findByPedidoId(id));
 	}
 
+	@DeleteMapping("/delete/{id}")
+	public ResponseEntity deleteGeo(@PathVariable Long id) {
+		service.delete(id);
+		return ResponseEntity.status(200).body("ok");
+	}
+
 }

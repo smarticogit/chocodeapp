@@ -18,12 +18,10 @@ public class PedidoController {
 	@Autowired
 	private IPedidoService service;
 
-
 	@PostMapping
 	public ResponseEntity<Pedido> save(@RequestBody PedidoDTO pedidoDTO) {
 		return ResponseEntity.status(201).body(service.save(pedidoDTO));
 	}
-
 
 	@PutMapping("/{idPedido}/entregador/{idEntregador}")
 	public ResponseEntity<Pedido> saveEntregador(@PathVariable Long idPedido, @PathVariable Long idEntregador) {
@@ -70,8 +68,5 @@ public class PedidoController {
 	public ResponseEntity<Pedido> findById(@PathVariable Long id) {
 		return ResponseEntity.status(200).body(service.findById(id));
 	}
-
-
-
 
 }

@@ -1,7 +1,6 @@
 package br.com.chocode.back.model;
 
 import br.com.chocode.back.DTO.PedidoDTO;
-
 import javax.persistence.*;
 
 @Entity
