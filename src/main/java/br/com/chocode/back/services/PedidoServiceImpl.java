@@ -5,6 +5,7 @@ import br.com.chocode.back.DTO.StatusDTO;
 import br.com.chocode.back.dao.PedidoDAO;
 import br.com.chocode.back.model.Pedido;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -31,7 +32,7 @@ public class PedidoServiceImpl implements IPedidoService {
 	public Pedido saveEntregador(Long idPedido, Long idEntregador) {
 		Pedido pedido = findById(idPedido);
 		pedido.setEntregador(entregadorService.findById(idEntregador));
-		pedido.setStatus("aguardando_entregador");
+		pedido.setStatus("a_caminho");
 		return dao.saveAndFlush(pedido);
 	}
 
@@ -59,7 +60,7 @@ public class PedidoServiceImpl implements IPedidoService {
 	}
 
 	public List<Pedido> findAll() {
-		List<Pedido> listaPedidos = dao.findAll();
+		List<Pedido> listaPedidos = dao.findAll(Sort.by(Sort.Direction.ASC, "nomeRestaurante"));
 		return listaPedidos;
 	}
 

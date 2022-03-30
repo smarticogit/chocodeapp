@@ -1,7 +1,6 @@
 package br.com.chocode.back.DTO;
 
 import br.com.chocode.back.model.Geolocalizacao;
-
 import java.time.LocalDateTime;
 
 public class GeolocalizacaoDTO {
