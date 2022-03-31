@@ -34,7 +34,10 @@ public class PedidoController {
 
 	@PutMapping("/{idPedido}/entregador/{idEntregador}")
 	public ResponseEntity<Pedido> saveEntregador(@PathVariable Long idPedido, @PathVariable Long idEntregador) {
-		return ResponseEntity.status(201).body(service.saveEntregador(idPedido, idEntregador));
+		Pedido pedido = service.saveEntregador(idPedido, idEntregador);
+		if (pedido == null)
+			return ResponseEntity.status(404).body(null);
+		return ResponseEntity.status(201).body(pedido);
 	}
 
 	@PutMapping("/{idPedido}/entregador/{idEntregador}/cancelado")

@@ -29,7 +29,11 @@ public class EntregadorController {
 
 	@GetMapping("/{id}")
 	public ResponseEntity<Entregador> findById(@PathVariable Long id) {
-		return ResponseEntity.status(200).body(service.findById(id));
+		Entregador entregador = service.findById(id);
+		if (entregador == null) {
+			return ResponseEntity.status(404).body(null);
+		}
+		return ResponseEntity.status(200).body(entregador);
 	}
 	
 	@PostMapping("/login")

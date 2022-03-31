@@ -27,6 +27,10 @@ public class ClienteController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Cliente> findById(@PathVariable Long id) {
+        Cliente cliente = service.findById(id);
+        if (cliente == null) {
+            return ResponseEntity.status(404).body(null);
+        }
         return ResponseEntity.status(200).body(service.findById(id));
     }
 }

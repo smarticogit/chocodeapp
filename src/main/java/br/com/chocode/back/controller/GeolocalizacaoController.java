@@ -42,7 +42,11 @@ public class GeolocalizacaoController {
 
 	@GetMapping("/pedido/{id}")
 	public ResponseEntity<List<GeolocalizacaoDTO>> findAllGeo(@PathVariable Long id) {
-		return ResponseEntity.status(200).body(service.findByPedidoId(id));
+		List<GeolocalizacaoDTO> geoPedido = service.findByPedidoId(id);
+		if (geoPedido == null) {
+			return ResponseEntity.status(404).body(null);
+		}
+		return ResponseEntity.status(200).body(geoPedido);
 	}
 
 }
