@@ -20,6 +20,7 @@ public class ChocodeSecurityConfiguration extends WebSecurityConfigurerAdapter{
 					  .exceptionHandling().authenticationEntryPoint(entryPoint)   
 					  .and()
 					  .authorizeRequests() 
+
 					  .antMatchers(HttpMethod.POST, "/entregadores/login").permitAll()
 					  .antMatchers(HttpMethod.POST, "/entregadores").permitAll()
 					  .anyRequest().authenticated().and().cors();
