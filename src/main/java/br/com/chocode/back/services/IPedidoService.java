@@ -9,7 +9,7 @@ public interface IPedidoService {
 
 	public Pedido save(PedidoDTO pedidoDTO);
 
-	public List<Pedido> findAll();
+	public List<PedidoDTO> findAll();
 
 	public Pedido findById(Long id);
 
@@ -20,5 +20,7 @@ public interface IPedidoService {
 	public Pedido statusEntregue(Long idPedido, Long idEntregador);
 
 	public List<PedidoDTO> findAllStatus(String status);
+
+	public List<PedidoDTO> findAllEntregadorStatus(Long id, String status);
 
 }

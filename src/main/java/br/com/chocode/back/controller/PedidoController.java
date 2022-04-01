@@ -6,7 +6,6 @@ import br.com.chocode.back.services.IPedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -23,7 +22,7 @@ public class PedidoController {
 	}
 
 	@GetMapping
-	public ResponseEntity<List<Pedido>> findAll() {
+	public ResponseEntity<List<PedidoDTO>> findAll() {
 		return ResponseEntity.status(200).body(service.findAll());
 	}
 
@@ -61,4 +60,8 @@ public class PedidoController {
 		return ResponseEntity.status(200).body(service.findAllStatus(status));
 	}
 
+	@GetMapping("/entregador/{idEntregador}/status/{status}")
+	public ResponseEntity<List<PedidoDTO>> findAllEntregadorStatus(@PathVariable Long idEntregador, @PathVariable String status) {
+		return ResponseEntity.status(200).body(service.findAllEntregadorStatus(idEntregador, status));
+	}
 }
