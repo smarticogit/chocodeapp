@@ -1,5 +1,6 @@
 package br.com.chocode.back.services;
 
+import br.com.chocode.back.DTO.PedidoClienteDTO;
 import br.com.chocode.back.DTO.PedidoDTO;
 import br.com.chocode.back.model.Pedido;
 
@@ -12,6 +13,8 @@ public interface IPedidoService {
 	public List<PedidoDTO> findAll();
 
 	public Pedido findById(Long id);
+
+	public PedidoClienteDTO findByIdCliente(Long id);
 
 	public Pedido saveEntregador(Long idPedido, Long idEntregador);
 

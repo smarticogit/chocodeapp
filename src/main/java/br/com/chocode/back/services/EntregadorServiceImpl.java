@@ -1,7 +1,9 @@
 package br.com.chocode.back.services;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import br.com.chocode.back.DTO.EntregadorDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import br.com.chocode.back.dao.EntregadorDAO;
@@ -20,7 +22,7 @@ public class EntregadorServiceImpl implements IEntregadorService {
 	}
 
 	@Override
-	public Entregador save(Entregador entregador) {
+	public EntregadorDTO save(Entregador entregador) {
 		String senhaLogin;
 		try {
 			senhaLogin = ChocodeCrypto.encrypt(entregador.getSenha());
@@ -28,16 +30,25 @@ public class EntregadorServiceImpl implements IEntregadorService {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return dao.saveAndFlush(entregador);
+		EntregadorDTO entregadorDTO = new EntregadorDTO(dao.saveAndFlush(entregador));
+		return entregadorDTO;
 	}
 
 	@Override
-	public List<Entregador> findAll() {
-		List<Entregador> listaEntredadores = dao.findAll();
-		return listaEntredadores;
+	public List<EntregadorDTO> findAll() {
+		List<Entregador> listaEntregadores = dao.findAll();
+		List<EntregadorDTO> listaEntregadoresDTO = new ArrayList<>();
+		for (Entregador entregador : listaEntregadores)
+			listaEntregadoresDTO.add(new EntregadorDTO(entregador));
+		return listaEntregadoresDTO;
 	}
 
-	public Entregador findById(Long id) {
+	public EntregadorDTO findById(Long id) {
+		EntregadorDTO entregadorDTO = new EntregadorDTO(dao.findById(id).get());
+		return entregadorDTO;
+	}
+
+	public Entregador findByIdModel(Long id) {
 		return dao.findById(id).get();
 	}
 

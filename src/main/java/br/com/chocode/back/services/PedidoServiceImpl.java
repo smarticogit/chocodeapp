@@ -1,5 +1,6 @@
 package br.com.chocode.back.services;
 
+import br.com.chocode.back.DTO.PedidoClienteDTO;
 import br.com.chocode.back.DTO.PedidoDTO;
 import br.com.chocode.back.dao.PedidoDAO;
 import br.com.chocode.back.model.Pedido;
@@ -42,9 +43,15 @@ public class PedidoServiceImpl implements IPedidoService {
 		return pedido;
 	}
 
+	public PedidoClienteDTO findByIdCliente(Long id) {
+		Pedido pedido = dao.findById(id).get();
+		PedidoClienteDTO pedidoClienteDTO = new PedidoClienteDTO(pedido);
+		return pedidoClienteDTO;
+	}
+
 	public Pedido saveEntregador(Long idPedido, Long idEntregador) {
 		Pedido pedido = findById(idPedido);
-		pedido.setEntregador(entregadorService.findById(idEntregador));
+		pedido.setEntregador(entregadorService.findByIdModel(idEntregador));
 		pedido.setStatus("a_caminho");
 		return dao.saveAndFlush(pedido);
 	}
