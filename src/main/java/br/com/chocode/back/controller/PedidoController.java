@@ -1,5 +1,6 @@
 package br.com.chocode.back.controller;
 
+import br.com.chocode.back.DTO.PedidoClienteDTO;
 import br.com.chocode.back.DTO.PedidoDTO;
 import br.com.chocode.back.model.Pedido;
 import br.com.chocode.back.services.IPedidoService;
@@ -27,8 +28,8 @@ public class PedidoController {
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<Pedido> findById(@PathVariable Long id) {
-		return ResponseEntity.status(200).body(service.findById(id));
+	public ResponseEntity<PedidoClienteDTO> findById(@PathVariable Long id) {
+		return ResponseEntity.status(200).body(service.findByIdCliente(id));
 	}
 
 	@PutMapping("/{idPedido}/entregador/{idEntregador}")
