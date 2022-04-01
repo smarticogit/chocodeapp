@@ -24,7 +24,8 @@ public class PedidoClienteDTO {
         this.nomeRestaurante = pedido.getNomeRestaurante();
         this.produto = pedido.getProduto();
         this.status = pedido.getStatus();
-        this.idEntregador = pedido.getEntregador().getId();
+        if (pedido.getEntregador() != null)
+            this.idEntregador = pedido.getEntregador().getId();
         this.cliente = pedido.getCliente();
     }
 

@@ -42,12 +42,12 @@ public class EntregadorServiceImpl implements IEntregadorService {
 			listaEntregadoresDTO.add(new EntregadorDTO(entregador));
 		return listaEntregadoresDTO;
 	}
-
+	@Override
 	public EntregadorDTO findById(Long id) {
 		EntregadorDTO entregadorDTO = new EntregadorDTO(dao.findById(id).get());
 		return entregadorDTO;
 	}
-
+	@Override
 	public Entregador findByIdModel(Long id) {
 		return dao.findById(id).get();
 	}
