@@ -53,7 +53,6 @@ public class PedidoServiceImpl implements IPedidoService {
 		Pedido pedido = findById(idPedido);
 		if (pedido == null || pedido.getEntregador() == null || !pedido.getEntregador().getId().equals(idEntregador))
 			return null;
-		pedido.setEntregador(null);
 		pedido.setStatus("cancelado");
 		return dao.saveAndFlush(pedido);
 	}
@@ -67,7 +66,7 @@ public class PedidoServiceImpl implements IPedidoService {
 	}
 
 	public List<PedidoDTO> findAllStatus(String status) {
-		List<Pedido> listaPedidos = dao.findByStatus(status);
+		List<Pedido> listaPedidos = dao.findByStatusOrderByNomeRestaurante(status);
 		List<PedidoDTO> listaPedidosDTO = new ArrayList<>();
 		for (Pedido pedido : listaPedidos){
 			if ( pedido.getCliente() != null)
@@ -76,4 +75,13 @@ public class PedidoServiceImpl implements IPedidoService {
 		return listaPedidosDTO;
 	}
 
+	public List<PedidoDTO> findAllEntregadorStatus(Long id, String status) {
+		List<Pedido> listaPedidos = dao.findByEntregadorIdAndStatus(id, status);
+		List<PedidoDTO> listaPedidosDTO = new ArrayList<>();
+		for (Pedido pedido : listaPedidos){
+			if ( pedido.getCliente() != null)
+				listaPedidosDTO.add(new PedidoDTO(pedido));
+		}
+		return listaPedidosDTO;
+	}
 }

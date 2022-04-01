@@ -21,4 +21,6 @@ public interface IPedidoService {
 
 	public List<PedidoDTO> findAllStatus(String status);
 
+	public List<PedidoDTO> findAllEntregadorStatus(Long id, String status);
+
 }
