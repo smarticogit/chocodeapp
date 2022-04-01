@@ -23,7 +23,7 @@ public class PedidoController {
 	}
 
 	@GetMapping
-	public ResponseEntity<List<Pedido>> findAll() {
+	public ResponseEntity<List<PedidoDTO>> findAll() {
 		return ResponseEntity.status(200).body(service.findAll());
 	}
 

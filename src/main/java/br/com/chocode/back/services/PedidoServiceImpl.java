@@ -29,9 +29,12 @@ public class PedidoServiceImpl implements IPedidoService {
 		return dao.saveAndFlush(pedido);
 	}
 
-	public List<Pedido> findAll() {
+	public List<PedidoDTO> findAll() {
 		List<Pedido> listaPedidos = dao.findAll(Sort.by(Sort.Direction.ASC, "nomeRestaurante"));
-		return listaPedidos;
+		List<PedidoDTO> listaPedidosDTO = new ArrayList<>();
+		for (Pedido pedido : listaPedidos)
+			listaPedidosDTO.add(new PedidoDTO(pedido));
+		return listaPedidosDTO;
 	}
 
 	public Pedido findById(Long id) {
